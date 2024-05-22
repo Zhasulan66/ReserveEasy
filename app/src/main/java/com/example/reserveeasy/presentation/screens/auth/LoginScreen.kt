@@ -117,7 +117,8 @@ fun LoginFields(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
-                .padding(horizontal = 24.dp)
+                .padding(horizontal = 24.dp),
+            verticalArrangement = Arrangement.Center
         ) {
             Column(
                 modifier = Modifier
@@ -155,8 +156,8 @@ fun LoginFields(
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
-                            color = if(isUserEmailIncorrect) Color.Red else Color.White,
-                            shape = RoundedCornerShape(50)
+                            color = if(isUserEmailIncorrect) Color.Red else Color.Gray,
+                            shape = RoundedCornerShape(8.dp)
                         ),
                     placeholder = {
                         Text(
@@ -187,8 +188,8 @@ fun LoginFields(
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
-                            color = if(isUserPasswordIncorrect) Color.Red else Color.White,
-                            shape = RoundedCornerShape(50)
+                            color = if(isUserPasswordIncorrect) Color.Red else Color.Gray,
+                            shape = RoundedCornerShape(8.dp)
                         ),
                     placeholder = {
                         Text(
@@ -228,7 +229,7 @@ fun LoginFields(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(52.dp)
-                        .clip(RoundedCornerShape(50))
+                        .clip(RoundedCornerShape(8.dp))
                         .background(
                             color = GreenMain
                         )

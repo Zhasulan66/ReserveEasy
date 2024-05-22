@@ -128,7 +128,8 @@ fun RegisterFields(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
-                .padding(horizontal = 24.dp)
+                .padding(horizontal = 24.dp),
+            verticalArrangement = Arrangement.Center
         ) {
             Column(
                 modifier = Modifier
@@ -158,8 +159,8 @@ fun RegisterFields(
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
-                            color = if(isUserNameIncorrect) Color.Red else Color.White,
-                            shape = RoundedCornerShape(50)
+                            color = if(isUserNameIncorrect) Color.Red else Color.Gray,
+                            shape = RoundedCornerShape(8.dp)
                         ),
                     placeholder = {
                         Text(
@@ -191,8 +192,8 @@ fun RegisterFields(
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
-                            color = if(isUserEmailIncorrect) Color.Red else Color.White,
-                            shape = RoundedCornerShape(50)
+                            color = if(isUserEmailIncorrect) Color.Red else Color.Gray,
+                            shape = RoundedCornerShape(8.dp)
                         ),
                     placeholder = {
                         Text(
@@ -224,8 +225,8 @@ fun RegisterFields(
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
-                            color = if(isUserPasswordIncorrect) Color.Red else Color.White,
-                            shape = RoundedCornerShape(50)
+                            color = if(isUserPasswordIncorrect) Color.Red else Color.Gray,
+                            shape = RoundedCornerShape(8.dp)
                         ),
                     placeholder = {
                         Text(
@@ -273,8 +274,8 @@ fun RegisterFields(
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
-                            color = if(isUserPassword2Incorrect) Color.Red else Color.White,
-                            shape = RoundedCornerShape(50)
+                            color = if(isUserPassword2Incorrect) Color.Red else Color.Gray,
+                            shape = RoundedCornerShape(8.dp)
                         ),
                     placeholder = {
                         Text(
@@ -314,7 +315,7 @@ fun RegisterFields(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(52.dp)
-                        .clip(RoundedCornerShape(50))
+                        .clip(RoundedCornerShape(8.dp))
                         .background(
                             color = GreenMain
                         )
@@ -401,6 +402,12 @@ fun isPasswordValid(password: String): Boolean {
     // Check if password contains numbers
     val containsNumber = password.any { it.isDigit() }
     if (!containsNumber) {
+        return false
+    }
+
+    // Check if password contains at least one uppercase letter
+    val containsUppercase = password.any { it.isUpperCase() }
+    if (!containsUppercase) {
         return false
     }
 
