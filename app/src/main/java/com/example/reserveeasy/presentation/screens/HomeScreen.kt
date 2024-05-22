@@ -50,6 +50,7 @@ import com.example.reserveeasy.domain.model.Resource
 import com.example.reserveeasy.domain.model.Restaurant
 import com.example.reserveeasy.presentation.components.RestaurantCard
 import com.example.reserveeasy.presentation.navigation.NavigationView
+import com.example.reserveeasy.presentation.navigation.Screen
 import com.example.reserveeasy.presentation.ui.theme.GrayF4
 import com.example.reserveeasy.presentation.viewmodel.MainViewModel
 
@@ -212,7 +213,7 @@ fun RestaurantListScreen(
                 ){
                     items(restaurantList){ restaurant ->
                         RestaurantCard(restaurant = restaurant){
-
+                            navController.navigate(Screen.RestaurantInfoScreen.route + "/1")
                         }
                         Spacer(modifier = Modifier.width(10.dp))
                     }
@@ -237,7 +238,7 @@ fun RestaurantListScreen(
                 ){
                     items(restaurantList){ restaurant ->
                         RestaurantCard(restaurant = restaurant){
-
+                            navController.navigate(Screen.RestaurantInfoScreen.route + "/1")
                         }
                         Spacer(modifier = Modifier.width(10.dp))
                     }
@@ -262,7 +263,7 @@ fun RestaurantListScreen(
                 ){
                     items(restaurantList){ restaurant ->
                         RestaurantCard(restaurant = restaurant){
-
+                            navController.navigate(Screen.RestaurantInfoScreen.route + "/1")
                         }
                         Spacer(modifier = Modifier.width(10.dp))
                     }
