@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.KeyboardArrowDown
 import androidx.compose.material.icons.rounded.KeyboardArrowLeft
 import androidx.compose.material.icons.rounded.KeyboardArrowRight
 import androidx.compose.material3.Text
@@ -29,9 +30,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -123,6 +126,8 @@ fun RestaurantSuccessScreen(
     navController: NavController,
     restaurant: Restaurant
 ) {
+    var isAboutExpanded by remember { mutableStateOf(false) }
+    var isMapExpanded by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -370,7 +375,15 @@ fun RestaurantSuccessScreen(
                                 )
                             }
 
-                            Image(imageVector = Icons.Rounded.KeyboardArrowRight, contentDescription = "icon")
+                            Image(
+                                imageVector = if(isAboutExpanded) Icons.Rounded.KeyboardArrowDown
+                                else Icons.Rounded.KeyboardArrowRight,
+                                contentDescription = "icon",
+                                modifier = Modifier
+                                    .clickable {
+                                        isAboutExpanded = !isAboutExpanded
+                                    }
+                            )
                         }
                         Spacer(modifier = Modifier.height(10.dp))
                         Box(
@@ -381,6 +394,26 @@ fun RestaurantSuccessScreen(
                                 .background(Color.LightGray)
                         )
                         Spacer(modifier = Modifier.height(10.dp))
+
+                        if(isAboutExpanded){
+                            Text(
+                                text = stringResource(R.string.lorem_ipsum),
+                                fontSize = 16.sp,
+                                fontFamily = Constants.INTER_FONT_FAMILY,
+                                color = Color.Black,
+                                modifier = Modifier
+                                    .padding(horizontal = 20.dp)
+                            )
+                            Spacer(modifier = Modifier.height(10.dp))
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(1.dp)
+                                    .padding(horizontal = 10.dp)
+                                    .background(Color.LightGray)
+                            )
+                            Spacer(modifier = Modifier.height(10.dp))
+                        }
                         //map
                         Row(
                             modifier = Modifier
@@ -404,11 +437,31 @@ fun RestaurantSuccessScreen(
                                 )
                             }
 
-                            Image(imageVector = Icons.Rounded.KeyboardArrowRight, contentDescription = "icon")
+                            Image(
+                                imageVector = if(isMapExpanded) Icons.Rounded.KeyboardArrowDown
+                                else Icons.Rounded.KeyboardArrowRight,
+                                contentDescription = "icon",
+                                modifier = Modifier
+                                    .clickable {
+                                        isMapExpanded = !isMapExpanded
+                                    }
+                            )
                         }
                         Spacer(modifier = Modifier.height(10.dp))
+                        if(isMapExpanded){
+                            Image(
+                                painter = painterResource(R.drawable.delpapa),
+                                contentDescription = "img",
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 20.dp),
+                                contentScale = ContentScale.FillWidth
+                            )
+                            Spacer(modifier = Modifier.height(20.dp))
+                        }
                     }
                 }
+                Spacer(modifier = Modifier.height(100.dp))
 
             }
         }
