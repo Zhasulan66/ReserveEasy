@@ -1,7 +1,6 @@
 package com.example.reserveeasy.presentation.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,8 +14,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -34,7 +31,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -44,18 +40,17 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.reserveeasy.R
-import com.example.reserveeasy.common.Constants.Companion.INTER_FONT_FAMILY
+import com.example.reserveeasy.common.Constants
 import com.example.reserveeasy.data.local.LocalRestaurantDataProvider
-import com.example.reserveeasy.domain.model.Resource
 import com.example.reserveeasy.domain.model.Restaurant
-import com.example.reserveeasy.presentation.components.RestaurantCard
+import com.example.reserveeasy.presentation.components.FavouriteCard
 import com.example.reserveeasy.presentation.navigation.NavigationView
 import com.example.reserveeasy.presentation.navigation.Screen
 import com.example.reserveeasy.presentation.ui.theme.GrayF4
 import com.example.reserveeasy.presentation.viewmodel.MainViewModel
 
 @Composable
-fun HomeScreen(
+fun FavouriteScreen(
     navController: NavController,
 ) {
     val viewModel = hiltViewModel<MainViewModel>()
@@ -91,13 +86,13 @@ fun HomeScreen(
                 viewModel.fetchAllRestaurants()
             }
         }*/
-        RestaurantListScreen(navController, LocalRestaurantDataProvider.getRestaurantData())
+        FavouriteListScreen(navController, LocalRestaurantDataProvider.getRestaurantData())
 
         NavigationView(
             modifier = Modifier.align(Alignment.BottomCenter),
             onHomeClick = {
                 navController.navigate(Screen.HomeScreen.route) {
-                    popUpTo(Screen.HomeScreen.route) {
+                    popUpTo(Screen.FavouriteScreen.route) {
                         inclusive = true
                     }
                 }
@@ -105,19 +100,19 @@ fun HomeScreen(
             onBookingClick = {},
             onFavouritesClick = {
                 navController.navigate(Screen.FavouriteScreen.route) {
-                    popUpTo(Screen.HomeScreen.route) {
+                    popUpTo(Screen.FavouriteScreen.route) {
                         inclusive = true
                     }
                 }
             },
             onProfileClick = {
                 navController.navigate(Screen.ProfileScreen.route) {
-                    popUpTo(Screen.HomeScreen.route) {
+                    popUpTo(Screen.FavouriteScreen.route) {
                         inclusive = true
                     }
                 }
             },
-            btnId = 1,
+            btnId = 3,
         )
 
     }
@@ -125,25 +120,31 @@ fun HomeScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RestaurantListScreen(
+fun FavouriteListScreen(
     navController: NavController,
     restaurantList: List<Restaurant>
 ) {
     var userSearch by remember { mutableStateOf("") }
 
+    val sortedRestaurantList =
+        if(userSearch.isNotEmpty()) {
+            restaurantList.filter { restaurant ->
+                restaurant.name.startsWith(userSearch, ignoreCase = true)
+            }
+        } else restaurantList
+
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .padding(horizontal = 24.dp)
     ) {
         Spacer(modifier = Modifier.height(20.dp))
         Text(
-            text = stringResource(id = R.string.home),
+            text = stringResource(id = R.string.favourites),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            fontFamily = INTER_FONT_FAMILY,
+            fontFamily = Constants.INTER_FONT_FAMILY,
             color = Color.Black,
-            modifier = Modifier
-                .padding(horizontal = 24.dp)
         )
         Spacer(modifier = Modifier.height(10.dp))
 
@@ -151,8 +152,7 @@ fun RestaurantListScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp)
-                .padding(horizontal = 24.dp),
+                .height(56.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -172,7 +172,7 @@ fun RestaurantListScreen(
                     Text(
                         text = stringResource(id = R.string.search),
                         fontSize = 14.sp,
-                        fontFamily = INTER_FONT_FAMILY,
+                        fontFamily = Constants.INTER_FONT_FAMILY,
                         color = Color.Black,
                     )
                 },
@@ -213,79 +213,31 @@ fun RestaurantListScreen(
             modifier = Modifier.fillMaxSize()
         ) {
             item {
-                Text(
-                    text = stringResource(id = R.string.next_to_you),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = INTER_FONT_FAMILY,
-                    color = Color.Black,
-                    modifier = Modifier
-                        .padding(horizontal = 24.dp)
-                )
-                Spacer(modifier = Modifier.height(10.dp))
 
-                LazyRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 24.dp)
-                ) {
-                    items(restaurantList) { restaurant ->
-                        RestaurantCard(restaurant = restaurant) {
+                for (i in sortedRestaurantList.indices step 2){
+                    if(i + 1 < sortedRestaurantList.size){
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            FavouriteCard(restaurant = sortedRestaurantList[i]) {
+                                navController.navigate(Screen.RestaurantInfoScreen.route + "/1")
+                            }
+                            FavouriteCard(restaurant = sortedRestaurantList[i+1]) {
+                                navController.navigate(Screen.RestaurantInfoScreen.route + "/1")
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(10.dp))
+                    }
+                    else {
+                        FavouriteCard(restaurant = sortedRestaurantList[i]) {
                             navController.navigate(Screen.RestaurantInfoScreen.route + "/1")
                         }
-                        Spacer(modifier = Modifier.width(10.dp))
                     }
+
                 }
-                Spacer(modifier = Modifier.height(10.dp))
 
-                Text(
-                    text = stringResource(id = R.string.previously_visited),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = INTER_FONT_FAMILY,
-                    color = Color.Black,
-                    modifier = Modifier
-                        .padding(horizontal = 24.dp)
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-
-                LazyRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 24.dp)
-                ) {
-                    items(restaurantList) { restaurant ->
-                        RestaurantCard(restaurant = restaurant) {
-                            navController.navigate(Screen.RestaurantInfoScreen.route + "/1")
-                        }
-                        Spacer(modifier = Modifier.width(10.dp))
-                    }
-                }
-                Spacer(modifier = Modifier.height(10.dp))
-
-                Text(
-                    text = stringResource(id = R.string.the_best_ratings),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = INTER_FONT_FAMILY,
-                    color = Color.Black,
-                    modifier = Modifier
-                        .padding(horizontal = 24.dp)
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-
-                LazyRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 24.dp)
-                ) {
-                    items(restaurantList) { restaurant ->
-                        RestaurantCard(restaurant = restaurant) {
-                            navController.navigate(Screen.RestaurantInfoScreen.route + "/1")
-                        }
-                        Spacer(modifier = Modifier.width(10.dp))
-                    }
-                }
                 Spacer(modifier = Modifier.height(100.dp))
             }
         }

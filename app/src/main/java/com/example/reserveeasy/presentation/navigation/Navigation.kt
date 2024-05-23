@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.reserveeasy.presentation.screens.FavouriteScreen
 import com.example.reserveeasy.presentation.LanguageManager
 import com.example.reserveeasy.presentation.screens.HomeScreen
 import com.example.reserveeasy.presentation.screens.profile.ProfileScreen
@@ -82,6 +83,13 @@ fun Navigation() {
         //NotificationSettingScreen
         composable(route = Screen.NotificationSettingScreen.route) {
             NotificationSettingScreen(
+                navController = navController,
+            )
+        }
+
+        //FavouriteScreen
+        composable(route = Screen.FavouriteScreen.route) {
+            FavouriteScreen(
                 navController = navController,
             )
         }

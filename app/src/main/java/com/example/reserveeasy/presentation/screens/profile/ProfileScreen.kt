@@ -135,7 +135,13 @@ fun ProfileScreen(
                 }
             },
             onBookingClick = {},
-            onFavouritesClick = {},
+            onFavouritesClick = {
+                navController.navigate(Screen.FavouriteScreen.route) {
+                    popUpTo(Screen.ProfileScreen.route) {
+                        inclusive = true
+                    }
+                }
+            },
             onProfileClick = {
                 navController.navigate(Screen.ProfileScreen.route) {
                     popUpTo(Screen.ProfileScreen.route) {
