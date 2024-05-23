@@ -31,6 +31,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -191,7 +192,7 @@ fun ProfileScreenSuccess(
     val context = LocalContext.current
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = "My Account",
+        text = stringResource(id = R.string.my_account),
         fontSize = 20.sp,
         fontWeight = FontWeight.Bold,
         fontFamily = Constants.INTER_FONT_FAMILY,
@@ -277,7 +278,7 @@ fun ProfileScreenSuccess(
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
-                    text = "Notifications",
+                    text = stringResource(id = R.string.notifications),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
                     fontFamily = Constants.INTER_FONT_FAMILY,
@@ -311,7 +312,7 @@ fun ProfileScreenSuccess(
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
-                    text = "Enter a promo code",
+                    text = stringResource(id = R.string.enter_promo_code),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
                     fontFamily = Constants.INTER_FONT_FAMILY,
@@ -343,7 +344,7 @@ fun ProfileScreenSuccess(
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
-                    text = "Invite a friend",
+                    text = stringResource(id = R.string.invite_friend),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
                     fontFamily = Constants.INTER_FONT_FAMILY,
@@ -381,7 +382,7 @@ fun ProfileScreenSuccess(
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
-                    text = "Language",
+                    text = stringResource(id = R.string.language),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
                     fontFamily = Constants.INTER_FONT_FAMILY,
@@ -427,7 +428,7 @@ fun ProfileScreenSuccess(
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
-                    text = "Support",
+                    text = stringResource(id = R.string.support),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
                     fontFamily = Constants.INTER_FONT_FAMILY,
@@ -466,7 +467,7 @@ fun ProfileScreenSuccess(
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
-                    text = "Log out",
+                    text = stringResource(id = R.string.logout),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
                     fontFamily = Constants.INTER_FONT_FAMILY,

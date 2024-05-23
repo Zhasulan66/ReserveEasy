@@ -111,7 +111,7 @@ fun RestaurantInfoScreen(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "Book Table",
+                text = stringResource(id = R.string.book_table),
                 fontSize = 16.sp,
                 fontFamily = Constants.INTER_FONT_FAMILY,
                 fontWeight = FontWeight.Bold,
@@ -164,7 +164,7 @@ fun RestaurantSuccessScreen(
 
             Spacer(modifier = Modifier.width(4.dp))
             Text(
-                text = "Restaurant Information",
+                text = stringResource(id = R.string.restaurant_information),
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 fontFamily = Constants.INTER_FONT_FAMILY,
@@ -222,7 +222,7 @@ fun RestaurantSuccessScreen(
                                 )
                                 //restaurant type
                                 Text(
-                                    text = "Cafe",
+                                    text = stringResource(id = R.string.cafe),
                                     fontSize = 16.sp,
                                     fontFamily = Constants.INTER_FONT_FAMILY,
                                     color = GreenMain,
@@ -298,7 +298,7 @@ fun RestaurantSuccessScreen(
                                 )
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Text(
-                                    text = "Deposit",
+                                    text = stringResource(id = R.string.deposit),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     fontFamily = Constants.INTER_FONT_FAMILY,
@@ -340,7 +340,7 @@ fun RestaurantSuccessScreen(
                                     contentDescription = "icon"
                                 )
                                 Text(
-                                    text = "Menu",
+                                    text = stringResource(id = R.string.menu),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     fontFamily = Constants.INTER_FONT_FAMILY,
@@ -379,7 +379,7 @@ fun RestaurantSuccessScreen(
                                     contentDescription = "icon"
                                 )
                                 Text(
-                                    text = "About restaurant",
+                                    text = stringResource(id = R.string.about_restaurant),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     fontFamily = Constants.INTER_FONT_FAMILY,
@@ -441,7 +441,7 @@ fun RestaurantSuccessScreen(
                                     contentDescription = "icon"
                                 )
                                 Text(
-                                    text = "Map",
+                                    text = stringResource(id = R.string.map),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     fontFamily = Constants.INTER_FONT_FAMILY,

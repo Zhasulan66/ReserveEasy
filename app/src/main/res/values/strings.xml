@@ -6,7 +6,36 @@
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
 
+    <!-- navigation text -->
+    <string name="home">Home</string>
+    <string name="bookings">Bookings</string>
+    <string name="favourites">Favourites</string>
+    <string name="profile">Profile</string>
+
+    <!-- home text -->
+    <string name="search">Search...</string>
+    <string name="next_to_you">Next to You</string>
+    <string name="previously_visited">Previously visited</string>
+    <string name="the_best_ratings">The best ratings</string>
+
+    <!-- restaurant info text -->
+    <string name="restaurant_information">Restaurant Information</string>
+    <string name="cafe">Cafe</string>
+    <string name="deposit">Deposit</string>
+    <string name="menu">Menu</string>
+    <string name="about_restaurant">About Restaurant</string>
+    <string name="map">Map</string>
+    <string name="book_table">Book Table</string>
+
     <!-- profile text -->
+    <string name="my_account">My Account</string>
+    <string name="notifications">Notifications</string>
+    <string name="enter_promo_code">Enter a promo code</string>
+    <string name="invite_friend">Invite a friend</string>
+    <string name="language">Language</string>
+    <string name="support">Support</string>
+    <string name="logout">Log out</string>
+
     <string name="prof_exit">Exit</string>
     <string name="are_sure_exit">Are you sure that you want to exit?</string>
     <string name="cancel">Cancel</string>
@@ -15,5 +44,8 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="kazakh">Kazakh</string>
     <string name="russian">Russian</string>
     <string name="english">English</string>
+
+    <string name="push_notifications">Push-notifications</string>
+    <string name="get_notifications">Get notifications about new events</string>
 
 </resources>

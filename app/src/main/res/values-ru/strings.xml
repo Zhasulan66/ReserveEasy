@@ -6,7 +6,36 @@
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
 
+    <!-- navigation text -->
+    <string name="home">Главная</string>
+    <string name="bookings">Бронь</string>
+    <string name="favourites">Избранное</string>
+    <string name="profile">Профиль</string>
+
+    <!-- home text -->
+    <string name="search">Поиск...</string>
+    <string name="next_to_you">Рядом с вами</string>
+    <string name="previously_visited">Ранее посещенные</string>
+    <string name="the_best_ratings">Лучшие рейтинги</string>
+
+    <!-- restaurant info text -->
+    <string name="restaurant_information">Инфрмация о Ресторане</string>
+    <string name="cafe">Кафе</string>
+    <string name="deposit">Депозит</string>
+    <string name="menu">Меню</string>
+    <string name="about_restaurant">О ресторане</string>
+    <string name="map">Карта</string>
+    <string name="book_table">Забронировать</string>
+
     <!-- profile text -->
+    <string name="my_account">Мой Аккаунт</string>
+    <string name="notifications">Уведомления</string>
+    <string name="enter_promo_code">Ввести промо код</string>
+    <string name="invite_friend">Пригласить друга</string>
+    <string name="language">Язык</string>
+    <string name="support">Поддержка</string>
+    <string name="logout">Выйти</string>
+
     <string name="prof_exit">Выйти</string>
     <string name="are_sure_exit">Вы уверены что хотите выйти?</string>
     <string name="cancel">Отмена</string>
@@ -15,5 +44,8 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="kazakh">Казахский</string>
     <string name="russian">Русский</string>
     <string name="english">Английский</string>
+
+    <string name="push_notifications">Push-уведомления</string>
+    <string name="get_notifications">Получать уведомления о новых событиях</string>
 
 </resources>

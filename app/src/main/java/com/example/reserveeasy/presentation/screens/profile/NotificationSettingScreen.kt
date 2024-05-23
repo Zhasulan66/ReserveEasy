@@ -37,6 +37,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -84,7 +85,7 @@ fun NotificationSettingScreen(
 
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
-                    text = "Notifications",
+                    text = stringResource(id = R.string.notifications),
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     fontFamily = INTER_FONT_FAMILY,
@@ -149,14 +150,14 @@ fun NotificationSettingScreen(
                                         .fillMaxWidth(0.7f)
                                 ) {
                                     Text(
-                                        text = "Push-notifications",
+                                        text = stringResource(id = R.string.push_notifications),
                                         fontFamily = INTER_FONT_FAMILY,
                                         fontSize = 14.sp,
                                         lineHeight = 18.sp,
                                         color = Color.Black,
                                     )
                                     Text(
-                                        text = "Get notifications about new events",
+                                        text = stringResource(id = R.string.get_notifications),
                                         fontFamily = INTER_FONT_FAMILY,
                                         fontSize = 10.sp,
                                         lineHeight = 12.sp,

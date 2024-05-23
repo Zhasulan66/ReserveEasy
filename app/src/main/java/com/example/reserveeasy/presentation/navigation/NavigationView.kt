@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.reserveeasy.R
@@ -58,7 +59,7 @@ fun NavigationView(
                 colorFilter = ColorFilter.tint(if (btnId == 1) GreenMain else Color.Gray)
             )
             Text(
-                text = "Home",
+                text = stringResource(id = R.string.home),
                 color = if (btnId == 1) GreenMain else Color.Gray,
                 fontFamily = INTER_FONT_FAMILY,
                 fontSize = 12.sp,
@@ -83,7 +84,7 @@ fun NavigationView(
                 colorFilter = ColorFilter.tint(if (btnId == 2) GreenMain else Color.Gray)
             )
             Text(
-                text = "Bookings",
+                text = stringResource(id = R.string.bookings),
                 color = if (btnId == 2) GreenMain else Color.Gray,
                 fontFamily = INTER_FONT_FAMILY,
                 fontSize = 12.sp,
@@ -108,7 +109,7 @@ fun NavigationView(
                 colorFilter = ColorFilter.tint(if (btnId == 3) GreenMain else Color.Gray)
             )
             Text(
-                text = "Favourites",
+                text = stringResource(id = R.string.favourites),
                 color = if (btnId == 3) GreenMain else Color.Gray,
                 fontFamily = INTER_FONT_FAMILY,
                 fontSize = 12.sp,
@@ -133,7 +134,7 @@ fun NavigationView(
                 colorFilter = ColorFilter.tint(if (btnId == 4) GreenMain else Color.Gray)
             )
             Text(
-                text = "Profile",
+                text = stringResource(id = R.string.profile),
                 color = if (btnId == 4) GreenMain else Color.Gray,
                 fontFamily = INTER_FONT_FAMILY,
                 fontSize = 12.sp,

@@ -6,7 +6,36 @@
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
 
+    <!-- navigation text -->
+    <string name="home">Басты бет</string>
+    <string name="bookings">Брондау</string>
+    <string name="favourites">Таңдаулы</string>
+    <string name="profile">Профиль</string>
+
+    <!-- home text -->
+    <string name="search">Іздеу...</string>
+    <string name="next_to_you">Сіздің қасыңызда</string>
+    <string name="previously_visited">Бұрын барған</string>
+    <string name="the_best_ratings">Үздік рейтингтер</string>
+
+    <!-- restaurant info text -->
+    <string name="restaurant_information">Ресторан жайлы Ақпарат</string>
+    <string name="cafe">Кафе</string>
+    <string name="deposit">Депозит</string>
+    <string name="menu">Ас мәзірі</string>
+    <string name="about_restaurant">Ресторан туралы</string>
+    <string name="map">Карта</string>
+    <string name="book_table">Брондау</string>
+
     <!-- profile text -->
+    <string name="my_account">Менің Аккаунтым</string>
+    <string name="notifications">Хабарламалар</string>
+    <string name="enter_promo_code">Промо кодты енгізу</string>
+    <string name="invite_friend">Дос шақыру</string>
+    <string name="language">Тіл</string>
+    <string name="support">Қолдау</string>
+    <string name="logout">Шығу</string>
+
     <string name="prof_exit">Шығу</string>
     <string name="are_sure_exit">Шыққыңыз келетініне сенімдісіз бе?</string>
     <string name="cancel">Бас тарту</string>
@@ -15,5 +44,8 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="kazakh">Қазақша</string>
     <string name="russian">Орысша</string>
     <string name="english">Ағылшынша</string>
+
+    <string name="push_notifications">Push-хабарландыру</string>
+    <string name="get_notifications">Жаңалықтар туралы хабарламалар алу</string>
 
 </resources>

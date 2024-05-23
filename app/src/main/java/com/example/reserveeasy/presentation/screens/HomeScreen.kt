@@ -131,7 +131,7 @@ fun RestaurantListScreen(
     ) {
         Spacer(modifier = Modifier.height(20.dp))
         Text(
-            text = "Home",
+            text = stringResource(id = R.string.home),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             fontFamily = INTER_FONT_FAMILY,
@@ -164,7 +164,7 @@ fun RestaurantListScreen(
                     .clip(RoundedCornerShape(24.dp)),
                 placeholder = {
                     Text(
-                        text = "Search...",
+                        text = stringResource(id = R.string.search),
                         fontSize = 14.sp,
                         fontFamily = INTER_FONT_FAMILY,
                         color = Color.Black,
@@ -208,7 +208,7 @@ fun RestaurantListScreen(
         ) {
             item {
                 Text(
-                    text = "Next to you",
+                    text = stringResource(id = R.string.next_to_you),
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     fontFamily = INTER_FONT_FAMILY,
@@ -233,7 +233,7 @@ fun RestaurantListScreen(
                 Spacer(modifier = Modifier.height(10.dp))
 
                 Text(
-                    text = "Previously visited",
+                    text = stringResource(id = R.string.previously_visited),
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     fontFamily = INTER_FONT_FAMILY,
@@ -258,7 +258,7 @@ fun RestaurantListScreen(
                 Spacer(modifier = Modifier.height(10.dp))
 
                 Text(
-                    text = "The best ratings",
+                    text = stringResource(id = R.string.the_best_ratings),
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     fontFamily = INTER_FONT_FAMILY,
