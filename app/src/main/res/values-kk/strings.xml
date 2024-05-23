@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="retry">Қайтадан көру</string>
+    <string name="loading">Жүктеу</string>
+    <string name="loading_failed">Қате кетті</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
+
+    <!-- profile text -->
+    <string name="prof_exit">Шығу</string>
+    <string name="are_sure_exit">Шыққыңыз келетініне сенімдісіз бе?</string>
+    <string name="cancel">Бас тарту</string>
+    <string name="choose_language">Тіл таңдаңыз</string>
+
+    <string name="kazakh">Қазақша</string>
+    <string name="russian">Орысша</string>
+    <string name="english">Ағылшынша</string>
+
+</resources>

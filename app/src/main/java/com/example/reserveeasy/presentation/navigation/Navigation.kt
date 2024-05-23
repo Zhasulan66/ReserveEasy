@@ -9,10 +9,12 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.reserveeasy.presentation.LanguageManager
 import com.example.reserveeasy.presentation.screens.HomeScreen
+import com.example.reserveeasy.presentation.screens.profile.ProfileScreen
 import com.example.reserveeasy.presentation.screens.RestaurantInfoScreen
 import com.example.reserveeasy.presentation.screens.SplashScreen
 import com.example.reserveeasy.presentation.screens.auth.LoginScreen
 import com.example.reserveeasy.presentation.screens.auth.RegistrationScreen
+import com.example.reserveeasy.presentation.screens.profile.NotificationSettingScreen
 
 @Composable
 fun Navigation() {
@@ -66,6 +68,21 @@ fun Navigation() {
             RestaurantInfoScreen(
                 navController = navController,
                 restaurantId = entry.arguments!!.getString("id").toString()
+            )
+        }
+
+        //ProfileScreen
+        composable(route = Screen.ProfileScreen.route) {
+            ProfileScreen(
+                navController = navController,
+                languageManager = languageManager
+            )
+        }
+
+        //NotificationSettingScreen
+        composable(route = Screen.NotificationSettingScreen.route) {
+            NotificationSettingScreen(
+                navController = navController,
             )
         }
     }

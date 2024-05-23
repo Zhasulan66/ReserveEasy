@@ -1,8 +1,19 @@
 <resources>
-    <string name="app_name">ReserveEasy</string>
+    <string name="app_name" translatable="false">ReserveEasy</string>
     <string name="retry">Retry</string>
     <string name="loading">Loading</string>
     <string name="loading_failed">Loading failed</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
+
+    <!-- profile text -->
+    <string name="prof_exit">Exit</string>
+    <string name="are_sure_exit">Are you sure that you want to exit?</string>
+    <string name="cancel">Cancel</string>
+    <string name="choose_language">Choose language</string>
+
+    <string name="kazakh">Kazakh</string>
+    <string name="russian">Russian</string>
+    <string name="english">English</string>
+
 </resources>

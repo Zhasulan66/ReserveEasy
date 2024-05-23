@@ -23,6 +23,7 @@ import androidx.compose.material.icons.rounded.KeyboardArrowLeft
 import androidx.compose.material.icons.rounded.KeyboardArrowRight
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -48,6 +49,7 @@ import com.example.reserveeasy.domain.model.Restaurant
 import com.example.reserveeasy.presentation.ui.theme.GreenLight
 import com.example.reserveeasy.presentation.ui.theme.GreenMain
 import com.example.reserveeasy.presentation.viewmodel.MainViewModel
+import kotlinx.coroutines.delay
 
 @Composable
 fun RestaurantInfoScreen(
@@ -140,15 +142,25 @@ fun RestaurantSuccessScreen(
                 .padding(horizontal = 24.dp),
             verticalAlignment = Alignment.CenterVertically
         ){
+            var canNavigate by remember { mutableStateOf(true) }
             //back btn
             Image(
                 imageVector = Icons.Rounded.KeyboardArrowLeft,
                 contentDescription = "icon",
                 modifier = Modifier
                     .clickable {
-                        navController.popBackStack()
+                        if (canNavigate) {
+                            canNavigate = false
+                            navController.popBackStack()
+                        }
                     }
             )
+            if (!canNavigate) {
+                LaunchedEffect(Unit) {
+                    delay(1000)
+                    canNavigate = true
+                }
+            }
 
             Spacer(modifier = Modifier.width(4.dp))
             Text(

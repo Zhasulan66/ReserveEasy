@@ -5,7 +5,7 @@ data class User(
     val email: String,
     val password: String,
     val isStaff: Boolean,
-    val isSuperAdmin: String,
+    val isSuperAdmin: Boolean,
     val createdAt: String,
     val updatedAt: String
 )

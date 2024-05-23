@@ -57,14 +57,14 @@ import com.example.reserveeasy.presentation.viewmodel.MainViewModel
 @Composable
 fun HomeScreen(
     navController: NavController,
-){
+) {
     val viewModel = hiltViewModel<MainViewModel>()
     //val restaurantState by viewModel.restaurantState.collectAsState()
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-    ){
+    ) {
 
         /*when (restaurantState) {
             is Resource.Loading -> {
@@ -95,10 +95,22 @@ fun HomeScreen(
 
         NavigationView(
             modifier = Modifier.align(Alignment.BottomCenter),
-            onHomeClick = {},
+            onHomeClick = {
+                navController.navigate(Screen.HomeScreen.route) {
+                    popUpTo(Screen.HomeScreen.route) {
+                        inclusive = true
+                    }
+                }
+            },
             onBookingClick = {},
             onFavouritesClick = {},
-            onProfileClick = {},
+            onProfileClick = {
+                navController.navigate(Screen.ProfileScreen.route) {
+                    popUpTo(Screen.HomeScreen.route) {
+                        inclusive = true
+                    }
+                }
+            },
             btnId = 1,
         )
 
@@ -110,13 +122,13 @@ fun HomeScreen(
 fun RestaurantListScreen(
     navController: NavController,
     restaurantList: List<Restaurant>
-){
+) {
     var userSearch by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-    ){
+    ) {
         Spacer(modifier = Modifier.height(20.dp))
         Text(
             text = "Home",
@@ -193,7 +205,7 @@ fun RestaurantListScreen(
 
         LazyColumn(
             modifier = Modifier.fillMaxSize()
-        ){
+        ) {
             item {
                 Text(
                     text = "Next to you",
@@ -210,9 +222,9 @@ fun RestaurantListScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 24.dp)
-                ){
-                    items(restaurantList){ restaurant ->
-                        RestaurantCard(restaurant = restaurant){
+                ) {
+                    items(restaurantList) { restaurant ->
+                        RestaurantCard(restaurant = restaurant) {
                             navController.navigate(Screen.RestaurantInfoScreen.route + "/1")
                         }
                         Spacer(modifier = Modifier.width(10.dp))
@@ -235,9 +247,9 @@ fun RestaurantListScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 24.dp)
-                ){
-                    items(restaurantList){ restaurant ->
-                        RestaurantCard(restaurant = restaurant){
+                ) {
+                    items(restaurantList) { restaurant ->
+                        RestaurantCard(restaurant = restaurant) {
                             navController.navigate(Screen.RestaurantInfoScreen.route + "/1")
                         }
                         Spacer(modifier = Modifier.width(10.dp))
@@ -260,9 +272,9 @@ fun RestaurantListScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 24.dp)
-                ){
-                    items(restaurantList){ restaurant ->
-                        RestaurantCard(restaurant = restaurant){
+                ) {
+                    items(restaurantList) { restaurant ->
+                        RestaurantCard(restaurant = restaurant) {
                             navController.navigate(Screen.RestaurantInfoScreen.route + "/1")
                         }
                         Spacer(modifier = Modifier.width(10.dp))

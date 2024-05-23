@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="retry">Попробовать снова</string>
+    <string name="loading">Загрузка</string>
+    <string name="loading_failed">Произошла ошибка</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
+
+    <!-- profile text -->
+    <string name="prof_exit">Выйти</string>
+    <string name="are_sure_exit">Вы уверены что хотите выйти?</string>
+    <string name="cancel">Отмена</string>
+    <string name="choose_language">Выберите язык</string>
+
+    <string name="kazakh">Казахский</string>
+    <string name="russian">Русский</string>
+    <string name="english">Английский</string>
+
+</resources>
