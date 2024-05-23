@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.reserveeasy.presentation.screens.FavouriteScreen
 import com.example.reserveeasy.presentation.LanguageManager
+import com.example.reserveeasy.presentation.screens.BookingScreen
 import com.example.reserveeasy.presentation.screens.HomeScreen
 import com.example.reserveeasy.presentation.screens.profile.ProfileScreen
 import com.example.reserveeasy.presentation.screens.RestaurantInfoScreen
@@ -90,6 +91,13 @@ fun Navigation() {
         //FavouriteScreen
         composable(route = Screen.FavouriteScreen.route) {
             FavouriteScreen(
+                navController = navController,
+            )
+        }
+
+        //BookingScreen
+        composable(route = Screen.BookingScreen.route) {
+            BookingScreen(
                 navController = navController,
             )
         }

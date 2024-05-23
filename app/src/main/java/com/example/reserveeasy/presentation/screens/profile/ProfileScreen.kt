@@ -134,7 +134,13 @@ fun ProfileScreen(
                     }
                 }
             },
-            onBookingClick = {},
+            onBookingClick = {
+                navController.navigate(Screen.BookingScreen.route) {
+                    popUpTo(Screen.ProfileScreen.route) {
+                        inclusive = true
+                    }
+                }
+            },
             onFavouritesClick = {
                 navController.navigate(Screen.FavouriteScreen.route) {
                     popUpTo(Screen.ProfileScreen.route) {

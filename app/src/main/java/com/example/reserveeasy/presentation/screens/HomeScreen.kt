@@ -102,7 +102,13 @@ fun HomeScreen(
                     }
                 }
             },
-            onBookingClick = {},
+            onBookingClick = {
+                navController.navigate(Screen.BookingScreen.route) {
+                    popUpTo(Screen.HomeScreen.route) {
+                        inclusive = true
+                    }
+                }
+            },
             onFavouritesClick = {
                 navController.navigate(Screen.FavouriteScreen.route) {
                     popUpTo(Screen.HomeScreen.route) {

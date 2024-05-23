@@ -48,4 +48,10 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="push_notifications">Push-хабарландыру</string>
     <string name="get_notifications">Жаңалықтар туралы хабарламалар алу</string>
 
+    <!-- bookings text -->
+    <string name="my_bookings">Менің брондарым</string>
+    <string name="no_bookings">Брон жоқ</string>
+    <string name="no_bookings2">Үстелдерді брондаған соң, олар осында пайда болады.</string>
+    <string name="add_booking">+ Брон қосу</string>
+
 </resources>

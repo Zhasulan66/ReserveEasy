@@ -48,4 +48,10 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="push_notifications">Push-notifications</string>
     <string name="get_notifications">Get notifications about new events</string>
 
+    <!-- bookings text -->
+    <string name="my_bookings">My Bookings</string>
+    <string name="no_bookings">No bookings</string>
+    <string name="no_bookings2">After booking a table, current bookings will appear here.</string>
+    <string name="add_booking">+ Add booking</string>
+
 </resources>

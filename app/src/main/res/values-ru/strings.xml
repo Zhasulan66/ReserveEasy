@@ -48,4 +48,10 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="push_notifications">Push-уведомления</string>
     <string name="get_notifications">Получать уведомления о новых событиях</string>
 
+    <!-- bookings text -->
+    <string name="my_bookings">Мои брони</string>
+    <string name="no_bookings">Броней нету</string>
+    <string name="no_bookings2">После забронирования столов, они появяться здесь.</string>
+    <string name="add_booking">+ Добавить бронь</string>
+
 </resources>

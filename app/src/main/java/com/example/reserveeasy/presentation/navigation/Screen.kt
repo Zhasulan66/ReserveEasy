@@ -16,4 +16,6 @@ sealed class Screen(val route: String) {
 
     data object FavouriteScreen : Screen("favourite_screen")
 
+    data object BookingScreen : Screen("booking_screen")
+
 }
