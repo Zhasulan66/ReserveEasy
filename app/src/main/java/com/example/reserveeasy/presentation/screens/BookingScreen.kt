@@ -47,6 +47,7 @@ import com.example.reserveeasy.common.Constants.Companion.INTER_FONT_FAMILY
 import com.example.reserveeasy.data.local.LocalBookingDataProvider
 import com.example.reserveeasy.data.local.LocalRestaurantDataProvider
 import com.example.reserveeasy.domain.model.Booking
+import com.example.reserveeasy.presentation.components.BookingCard
 import com.example.reserveeasy.presentation.components.FavouriteCard
 import com.example.reserveeasy.presentation.navigation.NavigationView
 import com.example.reserveeasy.presentation.navigation.Screen
@@ -162,7 +163,10 @@ fun BookingListScreen(
 
                //bookings card or empty
                 if (bookingList.isNotEmpty()){
-
+                    bookingList.forEach { booking ->
+                        BookingCard(booking)
+                        Spacer(modifier = Modifier.height(10.dp))
+                    }
                 }
                 else {
                     Column(

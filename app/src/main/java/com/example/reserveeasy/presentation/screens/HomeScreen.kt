@@ -209,7 +209,7 @@ fun RestaurantListScreen(
                 painter = painterResource(id = R.drawable.ic_filter),
                 contentDescription = "img",
                 modifier = Modifier.clickable {
-
+                    navController.navigate(Screen.FilterScreen.route)
                 }
             )
         }
