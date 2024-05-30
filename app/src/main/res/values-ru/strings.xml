@@ -20,7 +20,6 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 
     <!-- restaurant info text -->
     <string name="restaurant_information">Инфрмация о Ресторане</string>
-    <string name="cafe">Кафе</string>
     <string name="deposit">Депозит</string>
     <string name="menu">Меню</string>
     <string name="about_restaurant">О ресторане</string>
@@ -59,9 +58,20 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="show_result">Показать результат</string>
     <string name="reset">Сброс</string>
 
+    <string name="average_check">Средний чек</string>
     <string name="type_of_establishment">Тип заведения</string>
     <string name="kitchen">Кухня</string>
     <string name="payment_method">Способ оплаты</string>
+
+    <string name="restaurant">Ресторан</string>
+    <string name="cafe">Кафе</string>
+    <string name="bar">Бар</string>
+    <string name="lounge">Лаундж</string>
+
+    <string name="kitchen_turkish">Турецкий</string>
+    <string name="kitchen_korean">Корейский</string>
+    <string name="kitchen_georgian">Грузинский</string>
+    <string name="kitchen_kazakh">Казахский</string>
 
     <!-- add booking text -->
     <string name="number_of_guests">Количество гостей</string>
