@@ -49,6 +49,7 @@ import com.example.reserveeasy.data.local.LocalRestaurantDataProvider
 import com.example.reserveeasy.domain.model.Resource
 import com.example.reserveeasy.domain.model.Restaurant
 import com.example.reserveeasy.domain.model.RestaurantResponse
+import com.example.reserveeasy.presentation.navigation.Screen
 import com.example.reserveeasy.presentation.ui.theme.GreenLight
 import com.example.reserveeasy.presentation.ui.theme.GreenMain
 import com.example.reserveeasy.presentation.viewmodel.MainViewModel
@@ -108,7 +109,7 @@ fun RestaurantInfoScreen(
                     color = GreenMain
                 )
                 .clickable {
-
+                    navController.navigate(Screen.AddBookingScreen.route)
                 },
             contentAlignment = Alignment.Center
         ) {

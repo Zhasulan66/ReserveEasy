@@ -263,7 +263,7 @@ fun RestaurantListScreen(
                 ) {
                     items(restaurantList) { restaurant ->
                         RestaurantCard(restaurant = restaurant) {
-                            navController.navigate(Screen.RestaurantInfoScreen.route + "/1")
+                            navController.navigate(Screen.RestaurantInfoScreen.route + "/${restaurant.id}")
                         }
                         Spacer(modifier = Modifier.width(10.dp))
                     }
@@ -288,7 +288,7 @@ fun RestaurantListScreen(
                 ) {
                     items(restaurantList) { restaurant ->
                         RestaurantCard(restaurant = restaurant) {
-                            navController.navigate(Screen.RestaurantInfoScreen.route + "/1")
+                            navController.navigate(Screen.RestaurantInfoScreen.route + "/${restaurant.id}")
                         }
                         Spacer(modifier = Modifier.width(10.dp))
                     }

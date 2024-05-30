@@ -16,8 +16,11 @@ sealed class Screen(val route: String) {
 
     data object FavouriteScreen : Screen("favourite_screen")
 
+    data object FilterScreen : Screen("filter_screen")
+
     data object BookingScreen : Screen("booking_screen")
 
-    data object FilterScreen : Screen("filter_screen")
+    data object AddBookingScreen : Screen("add_booking_screen")
+
 
 }

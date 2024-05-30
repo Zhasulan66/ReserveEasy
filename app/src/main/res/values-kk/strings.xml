@@ -63,4 +63,10 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="kitchen">Асхана</string>
     <string name="payment_method">Төлем түрі</string>
 
+    <!-- add booking text -->
+    <string name="number_of_guests">Қонақ саны</string>
+    <string name="call_restaurant">Үлкен адам саны үшін мекеменің администрациясына жүгініңіз</string>
+    <string name="date">Күні</string>
+    <string name="time">Уақыты</string>
+
 </resources>

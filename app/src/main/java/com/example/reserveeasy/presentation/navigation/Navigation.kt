@@ -9,13 +9,14 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.reserveeasy.presentation.screens.FavouriteScreen
 import com.example.reserveeasy.presentation.LanguageManager
-import com.example.reserveeasy.presentation.screens.BookingScreen
+import com.example.reserveeasy.presentation.screens.booking.BookingScreen
 import com.example.reserveeasy.presentation.screens.HomeScreen
 import com.example.reserveeasy.presentation.screens.profile.ProfileScreen
 import com.example.reserveeasy.presentation.screens.RestaurantInfoScreen
 import com.example.reserveeasy.presentation.screens.SplashScreen
 import com.example.reserveeasy.presentation.screens.auth.LoginScreen
 import com.example.reserveeasy.presentation.screens.auth.RegistrationScreen
+import com.example.reserveeasy.presentation.screens.booking.AddBookingScreen
 import com.example.reserveeasy.presentation.screens.filter.FilterScreen
 import com.example.reserveeasy.presentation.screens.profile.NotificationSettingScreen
 
@@ -96,6 +97,13 @@ fun Navigation() {
             )
         }
 
+        //FilterScreen
+        composable(route = Screen.FilterScreen.route) {
+            FilterScreen(
+                navController = navController,
+            )
+        }
+
         //BookingScreen
         composable(route = Screen.BookingScreen.route) {
             BookingScreen(
@@ -103,11 +111,13 @@ fun Navigation() {
             )
         }
 
-        //FilterScreen
-        composable(route = Screen.FilterScreen.route) {
-            FilterScreen(
+        //AddBookingScreen
+        composable(route = Screen.AddBookingScreen.route) {
+            AddBookingScreen(
                 navController = navController,
             )
         }
+
+
     }
 }

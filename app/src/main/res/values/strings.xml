@@ -63,4 +63,10 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="kitchen">Kitchen</string>
     <string name="payment_method">Payment method</string>
 
+    <!-- add booking text -->
+    <string name="number_of_guests">Number of guests</string>
+    <string name="call_restaurant">Call the restaurant to book a table for a large number of people</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+
 </resources>
