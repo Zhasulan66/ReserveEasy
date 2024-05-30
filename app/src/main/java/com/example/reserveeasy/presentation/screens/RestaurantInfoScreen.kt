@@ -24,6 +24,7 @@ import androidx.compose.material.icons.rounded.KeyboardArrowRight
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -45,7 +46,9 @@ import androidx.navigation.NavController
 import com.example.reserveeasy.R
 import com.example.reserveeasy.common.Constants
 import com.example.reserveeasy.data.local.LocalRestaurantDataProvider
+import com.example.reserveeasy.domain.model.Resource
 import com.example.reserveeasy.domain.model.Restaurant
+import com.example.reserveeasy.domain.model.RestaurantResponse
 import com.example.reserveeasy.presentation.ui.theme.GreenLight
 import com.example.reserveeasy.presentation.ui.theme.GreenMain
 import com.example.reserveeasy.presentation.viewmodel.MainViewModel
@@ -57,13 +60,13 @@ fun RestaurantInfoScreen(
     restaurantId: String
 ){
     val viewModel = hiltViewModel<MainViewModel>()
-    //val restaurantInfoState by viewModel.restaurantInfoState.collectAsState()
+    val restaurantInfoState by viewModel.restaurantInfoState.collectAsState()
 
     Box(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        /*when (restaurantInfoState) {
+        when (restaurantInfoState) {
             is Resource.Loading -> {
                 LoadingScreen()
             }
@@ -80,18 +83,17 @@ fun RestaurantInfoScreen(
             }
 
             is Resource.Success -> {
-                val restaurant = (restaurantInfoState as Resource.Success<Restaurant>).data
-                RestaurantSuccessScreen(restaurant)
+                val restaurant = (restaurantInfoState as Resource.Success<RestaurantResponse>).data
+                RestaurantSuccessScreen(
+                    navController = navController,
+                    restaurant = restaurant.restaurant
+                )
             }
 
             is Resource.Initial -> {
                 viewModel.fetchRestaurantById(restaurantId)
             }
-        }*/
-        RestaurantSuccessScreen(
-            navController = navController,
-            LocalRestaurantDataProvider.defaultRestaurant
-        )
+        }
 
         //Book table btn
         Box(
@@ -275,7 +277,7 @@ fun RestaurantSuccessScreen(
                             )
                             Spacer(modifier = Modifier.width(4.dp))
                             Text(
-                                text = "Manasa 34/1",
+                                text = restaurant.address,
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 fontFamily = Constants.INTER_FONT_FAMILY,

@@ -9,6 +9,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.reserveeasy.domain.model.LoginResponse
 import com.example.reserveeasy.domain.model.Resource
+import com.example.reserveeasy.domain.model.Restaurant
+import com.example.reserveeasy.domain.model.RestaurantResponse
+import com.example.reserveeasy.domain.model.RestaurantsResponse
 import com.example.reserveeasy.domain.model.User
 import com.example.reserveeasy.domain.model.UserRequest
 import com.example.reserveeasy.domain.repository.ReserveEasyRepository
@@ -95,4 +98,40 @@ class MainViewModel @Inject constructor(
     fun loginSuccess() {
         _loginState.value = Resource.Initial
     }
+
+    //restaurant state
+    private val _restaurantsState = MutableStateFlow<Resource<RestaurantsResponse>>(Resource.Initial)
+    val restaurantsState: StateFlow<Resource<RestaurantsResponse>> = _restaurantsState.asStateFlow()
+
+    fun fetchAllRestaurants() {
+        viewModelScope.launch {
+            _restaurantsState.value = Resource.Loading
+            try {
+                val response = repository.getAllRestaurants()
+                _restaurantsState.value = Resource.Success(response)
+            } catch (e: Exception) {
+                _restaurantsState.value = Resource.Error(e)
+            }
+        }
+    }
+
+    //restaurant info state
+    private val _restaurantInfoState = MutableStateFlow<Resource<RestaurantResponse>>(Resource.Initial)
+    val restaurantInfoState: StateFlow<Resource<RestaurantResponse>> = _restaurantInfoState.asStateFlow()
+
+    fun fetchRestaurantById(id: String) {
+        viewModelScope.launch {
+            _restaurantInfoState.value = Resource.Loading
+            try {
+                val response = repository.getRestaurantById(id)
+                _restaurantInfoState.value = Resource.Success(response)
+            } catch (e: Exception) {
+                _restaurantInfoState.value = Resource.Error(e)
+            }
+        }
+    }
+
+
+
+
 }

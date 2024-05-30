@@ -26,6 +26,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -48,6 +49,7 @@ import com.example.reserveeasy.common.Constants.Companion.INTER_FONT_FAMILY
 import com.example.reserveeasy.data.local.LocalRestaurantDataProvider
 import com.example.reserveeasy.domain.model.Resource
 import com.example.reserveeasy.domain.model.Restaurant
+import com.example.reserveeasy.domain.model.RestaurantsResponse
 import com.example.reserveeasy.presentation.components.RestaurantCard
 import com.example.reserveeasy.presentation.navigation.NavigationView
 import com.example.reserveeasy.presentation.navigation.Screen
@@ -59,14 +61,14 @@ fun HomeScreen(
     navController: NavController,
 ) {
     val viewModel = hiltViewModel<MainViewModel>()
-    //val restaurantState by viewModel.restaurantState.collectAsState()
+    val restaurantsState by viewModel.restaurantsState.collectAsState()
 
     Box(
         modifier = Modifier
             .fillMaxSize()
     ) {
 
-        /*when (restaurantState) {
+        when (restaurantsState) {
             is Resource.Loading -> {
                 LoadingScreen()
             }
@@ -83,15 +85,14 @@ fun HomeScreen(
             }
 
             is Resource.Success -> {
-                val restaurantList = (restaurantState as Resource.Success<List<Restaurant>>).data
-                RestaurantListScreen(navController, restaurantList)
+                val restaurantsResponse = (restaurantsState as Resource.Success<RestaurantsResponse>).data
+                RestaurantListScreen(navController, restaurantsResponse.restaurants)
             }
 
             is Resource.Initial -> {
                 viewModel.fetchAllRestaurants()
             }
-        }*/
-        RestaurantListScreen(navController, LocalRestaurantDataProvider.getRestaurantData())
+        }
 
         NavigationView(
             modifier = Modifier.align(Alignment.BottomCenter),
@@ -237,7 +238,7 @@ fun RestaurantListScreen(
                 ) {
                     items(restaurantList) { restaurant ->
                         RestaurantCard(restaurant = restaurant) {
-                            navController.navigate(Screen.RestaurantInfoScreen.route + "/1")
+                            navController.navigate(Screen.RestaurantInfoScreen.route + "/${restaurant.id}")
                         }
                         Spacer(modifier = Modifier.width(10.dp))
                     }
