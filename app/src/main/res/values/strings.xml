@@ -54,4 +54,13 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="no_bookings2">After booking a table, current bookings will appear here.</string>
     <string name="add_booking">+ Add booking</string>
 
+    <!-- filter screen -->
+    <string name="filter">Filter</string>
+    <string name="show_result">Show Result</string>
+    <string name="reset">Reset</string>
+
+    <string name="type_of_establishment">Type of establishment</string>
+    <string name="kitchen">Kitchen</string>
+    <string name="payment_method">Payment method</string>
+
 </resources>

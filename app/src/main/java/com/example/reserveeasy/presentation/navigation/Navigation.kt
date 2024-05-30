@@ -16,6 +16,7 @@ import com.example.reserveeasy.presentation.screens.RestaurantInfoScreen
 import com.example.reserveeasy.presentation.screens.SplashScreen
 import com.example.reserveeasy.presentation.screens.auth.LoginScreen
 import com.example.reserveeasy.presentation.screens.auth.RegistrationScreen
+import com.example.reserveeasy.presentation.screens.filter.FilterScreen
 import com.example.reserveeasy.presentation.screens.profile.NotificationSettingScreen
 
 @Composable
@@ -98,6 +99,13 @@ fun Navigation() {
         //BookingScreen
         composable(route = Screen.BookingScreen.route) {
             BookingScreen(
+                navController = navController,
+            )
+        }
+
+        //FilterScreen
+        composable(route = Screen.FilterScreen.route) {
+            FilterScreen(
                 navController = navController,
             )
         }

@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -22,6 +23,8 @@ import com.example.reserveeasy.R
 import com.example.reserveeasy.common.Constants.Companion.INTER_FONT_FAMILY
 import com.example.reserveeasy.domain.model.Booking
 import com.example.reserveeasy.presentation.ui.theme.GreenMain
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 @Composable
 fun BookingCard(
@@ -64,33 +67,39 @@ fun BookingCard(
             horizontalArrangement = Arrangement.SpaceEvenly
         ){
             //date
-            Column{
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
                 Image(
                     painter = painterResource(id = R.drawable.ic_date),
                     contentDescription = "icon"
                 )
                 Text(
-                    text = "7 march",
+                    text = formatDate(booking.reservedTime.substring(0, 10)),
                     fontSize = 12.sp,
                     fontFamily = INTER_FONT_FAMILY,
                     color = Color.Gray
                 )
             }
             //date
-            Column{
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
                 Image(
                     painter = painterResource(id = R.drawable.ic_date),
                     contentDescription = "icon"
                 )
                 Text(
-                    text = "11:00",
+                    text = booking.reservedTime.substring(11, 16),
                     fontSize = 12.sp,
                     fontFamily = INTER_FONT_FAMILY,
                     color = Color.Gray
                 )
             }
             //guest
-            Column{
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
                 Image(
                     painter = painterResource(id = R.drawable.ic_date),
                     contentDescription = "icon"
@@ -105,4 +114,11 @@ fun BookingCard(
         }
 
     }
+}
+
+fun formatDate(inputDate: String): String {
+    val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val outputFormat = SimpleDateFormat("dd MMMM", Locale.getDefault())
+    val date = inputFormat.parse(inputDate) ?: return "Invalid Date"
+    return outputFormat.format(date)
 }

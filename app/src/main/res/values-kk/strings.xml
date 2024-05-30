@@ -54,4 +54,13 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="no_bookings2">Үстелдерді брондаған соң, олар осында пайда болады.</string>
     <string name="add_booking">+ Брон қосу</string>
 
+    <!-- filter screen -->
+    <string name="filter">Фильтр</string>
+    <string name="show_result">Нәтиже көрсету</string>
+    <string name="reset">Арылту</string>
+
+    <string name="type_of_establishment">Мекеме түрі</string>
+    <string name="kitchen">Асхана</string>
+    <string name="payment_method">Төлем түрі</string>
+
 </resources>

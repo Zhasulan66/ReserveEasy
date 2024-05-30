@@ -18,4 +18,6 @@ sealed class Screen(val route: String) {
 
     data object BookingScreen : Screen("booking_screen")
 
+    data object FilterScreen : Screen("filter_screen")
+
 }

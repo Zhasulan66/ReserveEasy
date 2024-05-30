@@ -54,4 +54,13 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="no_bookings2">После забронирования столов, они появяться здесь.</string>
     <string name="add_booking">+ Добавить бронь</string>
 
+    <!-- filter screen -->
+    <string name="filter">Фильтр</string>
+    <string name="show_result">Показать результат</string>
+    <string name="reset">Сброс</string>
+
+    <string name="type_of_establishment">Тип заведения</string>
+    <string name="kitchen">Кухня</string>
+    <string name="payment_method">Способ оплаты</string>
+
 </resources>
