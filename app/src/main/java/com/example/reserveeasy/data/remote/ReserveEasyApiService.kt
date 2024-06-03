@@ -1,9 +1,12 @@
 package com.example.reserveeasy.data.remote
 
+import com.example.reserveeasy.domain.model.BookingIdResponse
+import com.example.reserveeasy.domain.model.BookingRequest
+import com.example.reserveeasy.domain.model.BookingResponse
 import com.example.reserveeasy.domain.model.LoginResponse
-import com.example.reserveeasy.domain.model.Restaurant
 import com.example.reserveeasy.domain.model.RestaurantResponse
 import com.example.reserveeasy.domain.model.RestaurantsResponse
+import com.example.reserveeasy.domain.model.TableSchemeResponse
 import com.example.reserveeasy.domain.model.User
 import com.example.reserveeasy.domain.model.UserRequest
 import retrofit2.http.Body
@@ -26,6 +29,20 @@ interface ReserveEasyApiService {
     suspend fun getRestaurantById(
         @Path("id") id: String
     ): RestaurantResponse
+
+    @GET("table-scheme/scheme/{restaurantId}")
+    suspend fun getTableScheme(
+        @Path("restaurantId") restaurantId: String
+    ) : TableSchemeResponse
+
+    @GET("booking/list")
+    suspend fun getAllBookings() : BookingResponse
+
+    @POST("booking/create/")
+    suspend fun createBooking(
+        @Body bookingRequest: BookingRequest
+    ) : BookingIdResponse
+
 
 
 

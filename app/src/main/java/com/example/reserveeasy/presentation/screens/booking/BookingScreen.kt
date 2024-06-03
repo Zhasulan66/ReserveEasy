@@ -13,6 +13,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,9 +30,13 @@ import com.example.reserveeasy.R
 import com.example.reserveeasy.common.Constants.Companion.INTER_FONT_FAMILY
 import com.example.reserveeasy.data.local.LocalBookingDataProvider
 import com.example.reserveeasy.domain.model.Booking
+import com.example.reserveeasy.domain.model.BookingResponse
+import com.example.reserveeasy.domain.model.Resource
 import com.example.reserveeasy.presentation.components.BookingCard
 import com.example.reserveeasy.presentation.navigation.NavigationView
 import com.example.reserveeasy.presentation.navigation.Screen
+import com.example.reserveeasy.presentation.screens.ErrorScreen
+import com.example.reserveeasy.presentation.screens.LoadingScreen
 import com.example.reserveeasy.presentation.ui.theme.GrayEE
 import com.example.reserveeasy.presentation.ui.theme.GreenMain
 import com.example.reserveeasy.presentation.viewmodel.MainViewModel
@@ -40,14 +46,14 @@ fun BookingScreen(
     navController: NavController,
 ) {
     val viewModel = hiltViewModel<MainViewModel>()
-    //val bookingState by viewModel.bookingState.collectAsState()
+    val bookingState by viewModel.bookingState.collectAsState()
 
     Box(
         modifier = Modifier
             .fillMaxSize()
     ) {
 
-        /*when (bookingState) {
+        when (bookingState) {
             is Resource.Loading -> {
                 LoadingScreen()
             }
@@ -64,19 +70,15 @@ fun BookingScreen(
             }
 
             is Resource.Success -> {
-                val bookingList = (bookingState as Resource.Success<List<Booking>>).data
+                val bookingResponse = (bookingState as Resource.Success<BookingResponse>).data
+                val bookingList = bookingResponse.bookings
                 BookingListScreen(navController, bookingList)
             }
 
             is Resource.Initial -> {
-                viewModel.fetchAllBookingsByUser()
+                viewModel.fetchAllBookings()
             }
-        }*/
-        BookingListScreen(
-            navController,
-            LocalBookingDataProvider.getBookingData()
-            //emptyList()
-        )
+        }
 
         NavigationView(
             modifier = Modifier.align(Alignment.BottomCenter),
