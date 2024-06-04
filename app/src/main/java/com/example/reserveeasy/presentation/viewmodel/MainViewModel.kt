@@ -7,11 +7,15 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.reserveeasy.domain.model.BookingIdResponse
+import com.example.reserveeasy.domain.model.BookingRequest
+import com.example.reserveeasy.domain.model.BookingResponse
 import com.example.reserveeasy.domain.model.LoginResponse
 import com.example.reserveeasy.domain.model.Resource
 import com.example.reserveeasy.domain.model.Restaurant
 import com.example.reserveeasy.domain.model.RestaurantResponse
 import com.example.reserveeasy.domain.model.RestaurantsResponse
+import com.example.reserveeasy.domain.model.TableSchemeResponse
 import com.example.reserveeasy.domain.model.User
 import com.example.reserveeasy.domain.model.UserRequest
 import com.example.reserveeasy.domain.repository.ReserveEasyRepository
@@ -127,6 +131,58 @@ class MainViewModel @Inject constructor(
                 _restaurantInfoState.value = Resource.Success(response)
             } catch (e: Exception) {
                 _restaurantInfoState.value = Resource.Error(e)
+            }
+        }
+    }
+
+    //booking state
+    private val _bookingState = MutableStateFlow<Resource<BookingResponse>>(Resource.Initial)
+    val bookingState: StateFlow<Resource<BookingResponse>> = _bookingState.asStateFlow()
+
+    fun fetchAllBookings() {
+        viewModelScope.launch {
+            _bookingState.value = Resource.Loading
+            try {
+                val response = repository.getAllBookings()
+                _bookingState.value = Resource.Success(response)
+            } catch (e: Exception) {
+                _bookingState.value = Resource.Error(e)
+            }
+        }
+    }
+
+    //table scheme state
+    private val _tableSchemeState = MutableStateFlow<Resource<TableSchemeResponse>>(Resource.Initial)
+    val tableSchemeState: StateFlow<Resource<TableSchemeResponse>> = _tableSchemeState.asStateFlow()
+
+    fun fetchTableScheme(
+        restaurantId: String
+    ) {
+        viewModelScope.launch {
+            _tableSchemeState.value = Resource.Loading
+            try {
+                val response = repository.getTableScheme(restaurantId)
+                _tableSchemeState.value = Resource.Success(response)
+            } catch (e: Exception) {
+                _tableSchemeState.value = Resource.Error(e)
+            }
+        }
+    }
+
+    //create booking state
+    private val _createBookingState = MutableStateFlow<Resource<BookingIdResponse>>(Resource.Initial)
+    val createBookingState: StateFlow<Resource<BookingIdResponse>> = _createBookingState.asStateFlow()
+
+    fun createBooking(
+        bookingRequest: BookingRequest
+    ) {
+        viewModelScope.launch {
+            _createBookingState.value = Resource.Loading
+            try {
+                val response = repository.createBooking(bookingRequest)
+                _createBookingState.value = Resource.Success(response)
+            } catch (e: Exception) {
+                _createBookingState.value = Resource.Error(e)
             }
         }
     }

@@ -20,7 +20,6 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 
     <!-- restaurant info text -->
     <string name="restaurant_information">Restaurant Information</string>
-    <string name="cafe">Cafe</string>
     <string name="deposit">Deposit</string>
     <string name="menu">Menu</string>
     <string name="about_restaurant">About Restaurant</string>
@@ -59,9 +58,20 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="show_result">Show Result</string>
     <string name="reset">Reset</string>
 
+    <string name="average_check">Average Check</string>
     <string name="type_of_establishment">Type of establishment</string>
     <string name="kitchen">Kitchen</string>
     <string name="payment_method">Payment method</string>
+
+    <string name="restaurant">Restaurant</string>
+    <string name="cafe">Cafe</string>
+    <string name="bar">Bar</string>
+    <string name="lounge">Lounge</string>
+
+    <string name="kitchen_turkish">Turkish</string>
+    <string name="kitchen_korean">Korean</string>
+    <string name="kitchen_georgian">Georgian</string>
+    <string name="kitchen_kazakh">Kazakh</string>
 
     <!-- add booking text -->
     <string name="number_of_guests">Number of guests</string>
