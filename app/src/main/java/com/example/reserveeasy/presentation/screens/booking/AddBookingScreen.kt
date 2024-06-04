@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.rounded.KeyboardArrowLeft
 import androidx.compose.material.icons.rounded.KeyboardArrowRight
 import androidx.compose.material3.Text
@@ -42,6 +43,7 @@ import com.example.reserveeasy.R
 import com.example.reserveeasy.common.Constants
 import com.example.reserveeasy.common.Constants.Companion.INTER_FONT_FAMILY
 import com.example.reserveeasy.presentation.components.GuestButton
+import com.example.reserveeasy.presentation.components.TimeButton
 import com.example.reserveeasy.presentation.ui.theme.GreenLight
 import com.example.reserveeasy.presentation.ui.theme.GreenMain
 import kotlinx.coroutines.delay
@@ -56,8 +58,11 @@ fun AddBookingScreen(
             .fillMaxSize()
     ) {
         var guestAmount by remember { mutableStateOf(1)}
-        var date by remember { mutableStateOf("")}
-        var time by remember { mutableStateOf("")}
+        var currentDate by remember { mutableStateOf("")}
+        var currentTime by remember { mutableStateOf("")}
+
+        var isDateExpanded by remember { mutableStateOf(false) }
+        var isTimeExpanded by remember { mutableStateOf(false) }
 
         Column(
             modifier = Modifier
@@ -209,7 +214,9 @@ fun AddBookingScreen(
                                     color = Color.LightGray,
                                     shape = RoundedCornerShape(10.dp)
                                 )
-                                .clickable { }
+                                .clickable {
+                                    isTimeExpanded = !isTimeExpanded
+                                }
                                 .padding(10.dp),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ){
@@ -220,15 +227,97 @@ fun AddBookingScreen(
                                 )
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Text(
-                                    text = stringResource(id = R.string.time),
+                                    text = if(currentTime.isEmpty()) stringResource(id = R.string.time)
+                                    else currentTime,
                                     fontSize = 14.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     fontFamily = INTER_FONT_FAMILY,
-                                    color = Color.Gray,
+                                    color = if(currentTime.isEmpty()) Color.Gray
+                                    else Color.Black,
                                 )
                             }
 
-                            Image(imageVector = Icons.Rounded.KeyboardArrowRight, contentDescription = "icon")
+                            Image(
+                                imageVector = if(isTimeExpanded) Icons.Default.KeyboardArrowDown
+                                else Icons.Rounded.KeyboardArrowRight,
+                                contentDescription = "icon"
+                            )
+                        }
+
+                        //show time options
+                        if(isTimeExpanded){
+                            Spacer(modifier = Modifier.height(10.dp))
+                            //09 - 13
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ){
+                                TimeButton(currentTime = currentTime, timeText = "09:00") {
+                                    currentTime = "09:00"
+                                }
+                                TimeButton(currentTime = currentTime, timeText = "10:00") {
+                                    currentTime = "10:00"
+                                }
+                                TimeButton(currentTime = currentTime, timeText = "11:00") {
+                                    currentTime = "11:00"
+                                }
+                                TimeButton(currentTime = currentTime, timeText = "12:00") {
+                                    currentTime = "12:00"
+                                }
+                                TimeButton(currentTime = currentTime, timeText = "13:00") {
+                                    currentTime = "13:00"
+                                }
+                            }
+                            Spacer(modifier = Modifier.height(10.dp))
+
+                            //14 - 18
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ){
+                                TimeButton(currentTime = currentTime, timeText = "14:00") {
+                                    currentTime = "14:00"
+                                }
+                                TimeButton(currentTime = currentTime, timeText = "15:00") {
+                                    currentTime = "15:00"
+                                }
+                                TimeButton(currentTime = currentTime, timeText = "16:00") {
+                                    currentTime = "16:00"
+                                }
+                                TimeButton(currentTime = currentTime, timeText = "17:00") {
+                                    currentTime = "17:00"
+                                }
+                                TimeButton(currentTime = currentTime, timeText = "18:00") {
+                                    currentTime = "18:00"
+                                }
+                            }
+                            Spacer(modifier = Modifier.height(10.dp))
+
+                            //19 - 23
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ){
+                                TimeButton(currentTime = currentTime, timeText = "19:00") {
+                                    currentTime = "19:00"
+                                }
+                                TimeButton(currentTime = currentTime, timeText = "20:00") {
+                                    currentTime = "20:00"
+                                }
+                                TimeButton(currentTime = currentTime, timeText = "21:00") {
+                                    currentTime = "21:00"
+                                }
+                                TimeButton(currentTime = currentTime, timeText = "22:00") {
+                                    currentTime = "22:00"
+                                }
+                                TimeButton(currentTime = currentTime, timeText = "23:00") {
+                                    currentTime = "23:00"
+                                }
+                            }
+                            Spacer(modifier = Modifier.height(10.dp))
                         }
                     }
 
