@@ -187,6 +187,10 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun createBookingSuccess() {
+        _createBookingState.value = Resource.Initial
+    }
+
 
 
 

@@ -17,6 +17,8 @@ import com.example.reserveeasy.presentation.screens.SplashScreen
 import com.example.reserveeasy.presentation.screens.auth.LoginScreen
 import com.example.reserveeasy.presentation.screens.auth.RegistrationScreen
 import com.example.reserveeasy.presentation.screens.booking.AddBookingScreen
+import com.example.reserveeasy.presentation.screens.booking.ChooseTableBookingScreen
+import com.example.reserveeasy.presentation.screens.booking.ConfirmBookingScreen
 import com.example.reserveeasy.presentation.screens.filter.FilterScreen
 import com.example.reserveeasy.presentation.screens.profile.NotificationSettingScreen
 
@@ -112,9 +114,69 @@ fun Navigation() {
         }
 
         //AddBookingScreen
-        composable(route = Screen.AddBookingScreen.route) {
+        composable(route = Screen.AddBookingScreen.route + "/{id}",
+            arguments = listOf(
+                navArgument("id"){
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = false
+                }
+            )
+        ) { entry ->
             AddBookingScreen(
                 navController = navController,
+                restaurantId = entry.arguments!!.getString("id").toString()
+            )
+        }
+
+        //ChooseTableBookingScreen
+        composable(route = Screen.ChooseTableBookingScreen.route + "/{id}" + "/{reservedTime}",
+            arguments = listOf(
+                navArgument("id"){
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = false
+                },
+                navArgument("reservedTime"){
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = false
+                }
+            )
+        ) { entry ->
+            ChooseTableBookingScreen(
+                navController = navController,
+                restaurantId = entry.arguments!!.getString("id").toString(),
+                reservedTime = entry.arguments!!.getString("reservedTime").toString(),
+            )
+        }
+
+        //ConfirmBookingScreen
+        composable(route = Screen.ConfirmBookingScreen.route
+                + "/{id}" + "/{tableId}" + "/{reservedTime}",
+            arguments = listOf(
+                navArgument("id"){
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = false
+                },
+                navArgument("tableId"){
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = false
+                },
+                navArgument("reservedTime"){
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = false
+                }
+            )
+        ) { entry ->
+            ConfirmBookingScreen(
+                navController = navController,
+                restaurantId = entry.arguments!!.getString("id").toString(),
+                tableId = entry.arguments!!.getString("tableId").toString(),
+                reservedTime = entry.arguments!!.getString("reservedTime").toString(),
             )
         }
 

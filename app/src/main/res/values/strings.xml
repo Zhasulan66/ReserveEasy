@@ -78,5 +78,12 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="call_restaurant">Call the restaurant to book a table for a large number of people</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
+    <string name="choose_table">Choose Table</string>
+    <string name="no_tables">No tables</string>
+    <string name="no_tables2">Currently there is no tables in this establishment.</string>
+
+    <!-- confirm booking text -->
+    <string name="confirm_booking">Confirm Booking</string>
+    <string name="booking_success">Booking successfully!</string>
 
 </resources>

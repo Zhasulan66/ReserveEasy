@@ -78,5 +78,12 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="call_restaurant">Үлкен адам саны үшін мекеменің администрациясына жүгініңіз</string>
     <string name="date">Күні</string>
     <string name="time">Уақыты</string>
+    <string name="choose_table">Үстел Таңдау</string>
+    <string name="no_tables">Үстелдер жоқ</string>
+    <string name="no_tables2">Қазіргі сәтте бұл мекемеде үстелдер жоқ.</string>
+
+    <!-- confirm booking text -->
+    <string name="confirm_booking">Бронды растау</string>
+    <string name="booking_success">Сәтті брондалды!</string>
 
 </resources>

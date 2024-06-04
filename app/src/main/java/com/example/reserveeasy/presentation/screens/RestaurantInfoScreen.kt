@@ -109,7 +109,7 @@ fun RestaurantInfoScreen(
                     color = GreenMain
                 )
                 .clickable {
-                    navController.navigate(Screen.AddBookingScreen.route)
+                    navController.navigate(Screen.AddBookingScreen.route + "/${restaurantId}")
                 },
             contentAlignment = Alignment.Center
         ) {

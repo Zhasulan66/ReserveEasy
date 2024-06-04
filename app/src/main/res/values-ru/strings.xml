@@ -78,5 +78,12 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
     <string name="call_restaurant">Для большего количесва людей свяжитесь с администрацией ресторана</string>
     <string name="date">Дата</string>
     <string name="time">Время</string>
+    <string name="choose_table">Выбор стола</string>
+    <string name="no_tables">Столов нет</string>
+    <string name="no_tables2">На данный момент в этом заведении нету столов.</string>
+
+    <!-- confirm booking text -->
+    <string name="confirm_booking">Подтвердить бронь</string>
+    <string name="booking_success">Забронировано успешно!</string>
 
 </resources>
