@@ -60,7 +60,9 @@ fun ConfirmBookingScreen(
     navController: NavController,
     restaurantId: String,
     tableId: String,
-    reservedTime: String
+    reservedTime: String,
+    restaurantName: String,
+    restaurantAddress: String
 ){
 
     val viewModel = hiltViewModel<MainViewModel>()
@@ -105,7 +107,8 @@ fun ConfirmBookingScreen(
 
             is Resource.Initial -> {
                 ConfirmBookingInitial(
-                    navController, reservedTime
+                    navController, reservedTime,
+                    restaurantName, restaurantAddress
                 )
             }
         }
@@ -158,7 +161,9 @@ fun ConfirmBookingScreen(
 @Composable
 fun ConfirmBookingInitial(
     navController: NavController,
-    reservedTime: String
+    reservedTime: String,
+    restaurantName: String,
+    restaurantAddress: String
 ){
     Column(
         modifier = Modifier
@@ -212,7 +217,7 @@ fun ConfirmBookingInitial(
 
                 //restaurant name
                 Text(
-                    text = "Aurora",
+                    text = restaurantName,
                     fontFamily = Constants.INTER_FONT_FAMILY,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
@@ -292,7 +297,7 @@ fun ConfirmBookingInitial(
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = "restaurant.address",
+                        text = restaurantAddress,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold,
                         fontFamily = Constants.INTER_FONT_FAMILY,

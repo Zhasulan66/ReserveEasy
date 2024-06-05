@@ -261,7 +261,7 @@ fun RestaurantListScreen(
                         .fillMaxWidth()
                         .padding(start = 24.dp)
                 ) {
-                    items(restaurantList) { restaurant ->
+                    items(restaurantList.reversed()) { restaurant ->
                         RestaurantCard(restaurant = restaurant) {
                             navController.navigate(Screen.RestaurantInfoScreen.route + "/${restaurant.id}")
                         }
@@ -286,7 +286,7 @@ fun RestaurantListScreen(
                         .fillMaxWidth()
                         .padding(start = 24.dp)
                 ) {
-                    items(restaurantList) { restaurant ->
+                    items(restaurantList.shuffled()) { restaurant ->
                         RestaurantCard(restaurant = restaurant) {
                             navController.navigate(Screen.RestaurantInfoScreen.route + "/${restaurant.id}")
                         }

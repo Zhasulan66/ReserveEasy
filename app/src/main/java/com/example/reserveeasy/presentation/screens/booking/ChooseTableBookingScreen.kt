@@ -52,6 +52,8 @@ fun ChooseTableBookingScreen(
     navController: NavController,
     restaurantId: String,
     reservedTime: String,
+    restaurantName: String,
+    restaurantAddress: String
 ) {
     val viewModel = hiltViewModel<MainViewModel>()
     val tableSchemeState by viewModel.tableSchemeState.collectAsState()
@@ -80,7 +82,8 @@ fun ChooseTableBookingScreen(
             is Resource.Success -> {
                 val tableSchemeResponse = (tableSchemeState as Resource.Success<TableSchemeResponse>).data
                 val tableList = tableSchemeResponse.tables
-                TableListScreen(navController, tableList, restaurantId, reservedTime)
+                TableListScreen(navController, tableList, restaurantId, reservedTime,
+                    restaurantName, restaurantAddress)
             }
 
             is Resource.Initial -> {
@@ -96,7 +99,9 @@ fun TableListScreen(
     navController: NavController,
     tableList: List<Table>,
     restaurantId: String,
-    reservedTime: String
+    reservedTime: String,
+    restaurantName: String,
+    restaurantAddress: String
 ) {
     var currentTable by remember { mutableStateOf("") }
 
@@ -212,7 +217,16 @@ fun TableListScreen(
                     color = GreenMain
                 )
                 .clickable {
-                    navController.navigate(Screen.ConfirmBookingScreen.route + "/${restaurantId}" + "/${currentTable}" + "/${reservedTime}")
+                    if(currentTable.isNotEmpty()){
+                        navController.navigate(Screen.ConfirmBookingScreen.route
+                                + "/${restaurantId}"
+                                + "/${currentTable}"
+                                + "/${reservedTime}"
+                            + "/${restaurantName}"
+                            + "/${restaurantAddress}"
+                        )
+                    }
+
                 },
             contentAlignment = Alignment.Center
         ) {

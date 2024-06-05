@@ -63,11 +63,8 @@ fun RestaurantInfoScreen(
     val viewModel = hiltViewModel<MainViewModel>()
     val restaurantInfoState by viewModel.restaurantInfoState.collectAsState()
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        when (restaurantInfoState) {
+
+    when (restaurantInfoState) {
             is Resource.Loading -> {
                 LoadingScreen()
             }
@@ -96,6 +93,369 @@ fun RestaurantInfoScreen(
             }
         }
 
+}
+
+@Composable
+fun RestaurantSuccessScreen(
+    navController: NavController,
+    restaurant: Restaurant
+) {
+    var isAboutExpanded by remember { mutableStateOf(false) }
+    var isMapExpanded by remember { mutableStateOf(false) }
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            Spacer(modifier = Modifier.height(10.dp))
+            //Screen Name
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                var canNavigate by remember { mutableStateOf(true) }
+                //back btn
+                Image(
+                    imageVector = Icons.Rounded.KeyboardArrowLeft,
+                    contentDescription = "icon",
+                    modifier = Modifier
+                        .clickable {
+                            if (canNavigate) {
+                                canNavigate = false
+                                navController.popBackStack()
+                            }
+                        }
+                )
+                if (!canNavigate) {
+                    LaunchedEffect(Unit) {
+                        delay(1000)
+                        canNavigate = true
+                    }
+                }
+
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    text = stringResource(id = R.string.restaurant_information),
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = Constants.INTER_FONT_FAMILY,
+                    color = Color.Black,
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+
+            LazyColumn(
+                modifier = Modifier.fillMaxWidth()
+            ){
+                item {
+                    //restaurant image
+                    Image(painter = painterResource(
+                        id = R.drawable.delpapa),
+                        contentDescription = "img",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(230.dp),
+                        contentScale = ContentScale.Crop
+                    )
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 24.dp)
+                    ){
+
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .border(
+                                    width = 1.dp,
+                                    color = Color.LightGray,
+                                    shape = RoundedCornerShape(10.dp)
+                                )
+                        ){
+                            Spacer(modifier = Modifier.height(10.dp))
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 10.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ){
+                                Column {
+                                    //restaurant name
+                                    Text(
+                                        text = restaurant.name,
+                                        fontSize = 24.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        fontFamily = Constants.INTER_FONT_FAMILY,
+                                        color = Color.Black,
+                                    )
+                                    //restaurant type
+                                    Text(
+                                        text = stringResource(id = R.string.cafe),
+                                        fontSize = 16.sp,
+                                        fontFamily = Constants.INTER_FONT_FAMILY,
+                                        color = GreenMain,
+                                    )
+                                }
+                                var isLiked by remember { mutableStateOf(false) }
+                                //like image
+                                Image(
+                                    painter = painterResource(id = if(isLiked) R.drawable.ic_like_on
+                                    else R.drawable.ic_like_off),
+                                    contentDescription = "icon",
+                                    modifier = Modifier
+                                        .clickable {
+                                            isLiked = !isLiked
+                                        }
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(10.dp))
+
+                            //restaurant rating
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 10.dp),
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_star),
+                                    contentDescription = "icon"
+                                )
+                                Spacer(modifier = Modifier.width(4.dp))
+                                Text(
+                                    text = "4.8",
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.SemiBold,
+                                    fontFamily = Constants.INTER_FONT_FAMILY,
+                                    color = Color.Gray,
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(10.dp))
+
+                            //restaurant address
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 10.dp),
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_address),
+                                    contentDescription = "icon"
+                                )
+                                Spacer(modifier = Modifier.width(4.dp))
+                                Text(
+                                    text = restaurant.address,
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.SemiBold,
+                                    fontFamily = Constants.INTER_FONT_FAMILY,
+                                    color = Color.Gray,
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(10.dp))
+
+                            //deposit
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 10.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ){
+                                Row {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.ic_deposit),
+                                        contentDescription = "icon"
+                                    )
+                                    Spacer(modifier = Modifier.width(4.dp))
+                                    Text(
+                                        text = stringResource(id = R.string.deposit),
+                                        fontSize = 16.sp,
+                                        fontWeight = FontWeight.SemiBold,
+                                        fontFamily = Constants.INTER_FONT_FAMILY,
+                                        color = Color.Gray,
+                                    )
+                                }
+
+                                Text(
+                                    text = "5000 ₸",
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    fontFamily = Constants.INTER_FONT_FAMILY,
+                                    color = GreenMain,
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(10.dp))
+
+                            //Menu button
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 10.dp)
+                                    .clip(RoundedCornerShape(10.dp))
+                                    .clickable { }
+                                    .background(
+                                        Color(
+                                            GreenLight.red,
+                                            GreenLight.green,
+                                            GreenLight.blue,
+                                            alpha = 0.26f
+                                        )
+                                    )
+                                    .padding(horizontal = 10.dp, vertical = 4.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ){
+                                Row {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.ic_menu),
+                                        contentDescription = "icon"
+                                    )
+                                    Text(
+                                        text = stringResource(id = R.string.menu),
+                                        fontSize = 16.sp,
+                                        fontWeight = FontWeight.SemiBold,
+                                        fontFamily = Constants.INTER_FONT_FAMILY,
+                                        color = Color.Black,
+                                    )
+                                }
+
+                                Image(imageVector = Icons.Rounded.KeyboardArrowRight, contentDescription = "icon")
+                            }
+                            Spacer(modifier = Modifier.height(10.dp))
+                        }
+                        Spacer(modifier = Modifier.height(10.dp))
+
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .border(
+                                    width = 1.dp,
+                                    color = Color.LightGray,
+                                    shape = RoundedCornerShape(10.dp)
+                                )
+                        ){
+                            Spacer(modifier = Modifier.height(10.dp))
+                            //About restaurant
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 10.dp)
+                                    .clip(RoundedCornerShape(10.dp))
+                                    .padding(horizontal = 10.dp, vertical = 4.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ){
+                                Row {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.ic_about),
+                                        contentDescription = "icon"
+                                    )
+                                    Text(
+                                        text = stringResource(id = R.string.about_restaurant),
+                                        fontSize = 16.sp,
+                                        fontWeight = FontWeight.SemiBold,
+                                        fontFamily = Constants.INTER_FONT_FAMILY,
+                                        color = Color.Black,
+                                    )
+                                }
+
+                                Image(
+                                    imageVector = if(isAboutExpanded) Icons.Rounded.KeyboardArrowDown
+                                    else Icons.Rounded.KeyboardArrowRight,
+                                    contentDescription = "icon",
+                                    modifier = Modifier
+                                        .clickable {
+                                            isAboutExpanded = !isAboutExpanded
+                                        }
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(10.dp))
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(1.dp)
+                                    .padding(horizontal = 10.dp)
+                                    .background(Color.LightGray)
+                            )
+                            Spacer(modifier = Modifier.height(10.dp))
+
+                            if(isAboutExpanded){
+                                Text(
+                                    text = stringResource(R.string.lorem_ipsum),
+                                    fontSize = 16.sp,
+                                    fontFamily = Constants.INTER_FONT_FAMILY,
+                                    color = Color.Black,
+                                    modifier = Modifier
+                                        .padding(horizontal = 20.dp)
+                                )
+                                Spacer(modifier = Modifier.height(10.dp))
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(1.dp)
+                                        .padding(horizontal = 10.dp)
+                                        .background(Color.LightGray)
+                                )
+                                Spacer(modifier = Modifier.height(10.dp))
+                            }
+                            //map
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 10.dp)
+                                    .clip(RoundedCornerShape(10.dp))
+                                    .padding(horizontal = 10.dp, vertical = 4.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ){
+                                Row {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.ic_map),
+                                        contentDescription = "icon"
+                                    )
+                                    Text(
+                                        text = stringResource(id = R.string.map),
+                                        fontSize = 16.sp,
+                                        fontWeight = FontWeight.SemiBold,
+                                        fontFamily = Constants.INTER_FONT_FAMILY,
+                                        color = Color.Black,
+                                    )
+                                }
+
+                                Image(
+                                    imageVector = if(isMapExpanded) Icons.Rounded.KeyboardArrowDown
+                                    else Icons.Rounded.KeyboardArrowRight,
+                                    contentDescription = "icon",
+                                    modifier = Modifier
+                                        .clickable {
+                                            isMapExpanded = !isMapExpanded
+                                        }
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(10.dp))
+                            if(isMapExpanded){
+                                Image(
+                                    painter = painterResource(R.drawable.delpapa),
+                                    contentDescription = "img",
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 20.dp),
+                                    contentScale = ContentScale.FillWidth
+                                )
+                                Spacer(modifier = Modifier.height(20.dp))
+                            }
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(100.dp))
+
+                }
+            }
+
+        }
+
         //Book table btn
         Box(
             modifier = Modifier
@@ -109,7 +469,10 @@ fun RestaurantInfoScreen(
                     color = GreenMain
                 )
                 .clickable {
-                    navController.navigate(Screen.AddBookingScreen.route + "/${restaurantId}")
+                    navController.navigate(Screen.AddBookingScreen.route
+                            + "/${restaurant.id}"
+                            + "/${restaurant.name}"
+                            + "/${restaurant.address}")
                 },
             contentAlignment = Alignment.Center
         ) {
@@ -124,362 +487,5 @@ fun RestaurantInfoScreen(
             )
         }
     }
-}
 
-@Composable
-fun RestaurantSuccessScreen(
-    navController: NavController,
-    restaurant: Restaurant
-) {
-    var isAboutExpanded by remember { mutableStateOf(false) }
-    var isMapExpanded by remember { mutableStateOf(false) }
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        Spacer(modifier = Modifier.height(10.dp))
-        //Screen Name
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ){
-            var canNavigate by remember { mutableStateOf(true) }
-            //back btn
-            Image(
-                imageVector = Icons.Rounded.KeyboardArrowLeft,
-                contentDescription = "icon",
-                modifier = Modifier
-                    .clickable {
-                        if (canNavigate) {
-                            canNavigate = false
-                            navController.popBackStack()
-                        }
-                    }
-            )
-            if (!canNavigate) {
-                LaunchedEffect(Unit) {
-                    delay(1000)
-                    canNavigate = true
-                }
-            }
-
-            Spacer(modifier = Modifier.width(4.dp))
-            Text(
-                text = stringResource(id = R.string.restaurant_information),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                fontFamily = Constants.INTER_FONT_FAMILY,
-                color = Color.Black,
-            )
-        }
-        Spacer(modifier = Modifier.height(10.dp))
-
-        LazyColumn(
-            modifier = Modifier.fillMaxWidth()
-        ){
-            item {
-                //restaurant image
-                Image(painter = painterResource(
-                    id = R.drawable.delpapa),
-                    contentDescription = "img",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(230.dp),
-                    contentScale = ContentScale.Crop
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp)
-                ){
-
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .border(
-                                width = 1.dp,
-                                color = Color.LightGray,
-                                shape = RoundedCornerShape(10.dp)
-                            )
-                    ){
-                        Spacer(modifier = Modifier.height(10.dp))
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 10.dp),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ){
-                            Column {
-                                //restaurant name
-                                Text(
-                                    text = restaurant.name,
-                                    fontSize = 24.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    fontFamily = Constants.INTER_FONT_FAMILY,
-                                    color = Color.Black,
-                                )
-                                //restaurant type
-                                Text(
-                                    text = stringResource(id = R.string.cafe),
-                                    fontSize = 16.sp,
-                                    fontFamily = Constants.INTER_FONT_FAMILY,
-                                    color = GreenMain,
-                                )
-                            }
-                            var isLiked by remember { mutableStateOf(false) }
-                            //like image
-                            Image(
-                                painter = painterResource(id = if(isLiked) R.drawable.ic_like_on
-                                else R.drawable.ic_like_off),
-                                contentDescription = "icon",
-                                modifier = Modifier
-                                    .clickable {
-                                        isLiked = !isLiked
-                                    }
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
-
-                        //restaurant rating
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 10.dp),
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.ic_star),
-                                contentDescription = "icon"
-                            )
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Text(
-                                text = "4.8",
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.SemiBold,
-                                fontFamily = Constants.INTER_FONT_FAMILY,
-                                color = Color.Gray,
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
-
-                        //restaurant address
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 10.dp),
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.ic_address),
-                                contentDescription = "icon"
-                            )
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Text(
-                                text = restaurant.address,
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.SemiBold,
-                                fontFamily = Constants.INTER_FONT_FAMILY,
-                                color = Color.Gray,
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
-
-                        //deposit
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 10.dp),
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ){
-                            Row {
-                                Image(
-                                    painter = painterResource(id = R.drawable.ic_deposit),
-                                    contentDescription = "icon"
-                                )
-                                Spacer(modifier = Modifier.width(4.dp))
-                                Text(
-                                    text = stringResource(id = R.string.deposit),
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.SemiBold,
-                                    fontFamily = Constants.INTER_FONT_FAMILY,
-                                    color = Color.Gray,
-                                )
-                            }
-
-                            Text(
-                                text = "5000 ₸",
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.Bold,
-                                fontFamily = Constants.INTER_FONT_FAMILY,
-                                color = GreenMain,
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
-
-                        //Menu button
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 10.dp)
-                                .clip(RoundedCornerShape(10.dp))
-                                .clickable { }
-                                .background(
-                                    Color(
-                                        GreenLight.red,
-                                        GreenLight.green,
-                                        GreenLight.blue,
-                                        alpha = 0.26f
-                                    )
-                                )
-                                .padding(horizontal = 10.dp, vertical = 4.dp),
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ){
-                            Row {
-                                Image(
-                                    painter = painterResource(id = R.drawable.ic_menu),
-                                    contentDescription = "icon"
-                                )
-                                Text(
-                                    text = stringResource(id = R.string.menu),
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.SemiBold,
-                                    fontFamily = Constants.INTER_FONT_FAMILY,
-                                    color = Color.Black,
-                                )
-                            }
-
-                            Image(imageVector = Icons.Rounded.KeyboardArrowRight, contentDescription = "icon")
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
-                    }
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .border(
-                                width = 1.dp,
-                                color = Color.LightGray,
-                                shape = RoundedCornerShape(10.dp)
-                            )
-                    ){
-                        Spacer(modifier = Modifier.height(10.dp))
-                        //About restaurant
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 10.dp)
-                                .clip(RoundedCornerShape(10.dp))
-                                .padding(horizontal = 10.dp, vertical = 4.dp),
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ){
-                            Row {
-                                Image(
-                                    painter = painterResource(id = R.drawable.ic_about),
-                                    contentDescription = "icon"
-                                )
-                                Text(
-                                    text = stringResource(id = R.string.about_restaurant),
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.SemiBold,
-                                    fontFamily = Constants.INTER_FONT_FAMILY,
-                                    color = Color.Black,
-                                )
-                            }
-
-                            Image(
-                                imageVector = if(isAboutExpanded) Icons.Rounded.KeyboardArrowDown
-                                else Icons.Rounded.KeyboardArrowRight,
-                                contentDescription = "icon",
-                                modifier = Modifier
-                                    .clickable {
-                                        isAboutExpanded = !isAboutExpanded
-                                    }
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(1.dp)
-                                .padding(horizontal = 10.dp)
-                                .background(Color.LightGray)
-                        )
-                        Spacer(modifier = Modifier.height(10.dp))
-
-                        if(isAboutExpanded){
-                            Text(
-                                text = stringResource(R.string.lorem_ipsum),
-                                fontSize = 16.sp,
-                                fontFamily = Constants.INTER_FONT_FAMILY,
-                                color = Color.Black,
-                                modifier = Modifier
-                                    .padding(horizontal = 20.dp)
-                            )
-                            Spacer(modifier = Modifier.height(10.dp))
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(1.dp)
-                                    .padding(horizontal = 10.dp)
-                                    .background(Color.LightGray)
-                            )
-                            Spacer(modifier = Modifier.height(10.dp))
-                        }
-                        //map
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 10.dp)
-                                .clip(RoundedCornerShape(10.dp))
-                                .padding(horizontal = 10.dp, vertical = 4.dp),
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ){
-                            Row {
-                                Image(
-                                    painter = painterResource(id = R.drawable.ic_map),
-                                    contentDescription = "icon"
-                                )
-                                Text(
-                                    text = stringResource(id = R.string.map),
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.SemiBold,
-                                    fontFamily = Constants.INTER_FONT_FAMILY,
-                                    color = Color.Black,
-                                )
-                            }
-
-                            Image(
-                                imageVector = if(isMapExpanded) Icons.Rounded.KeyboardArrowDown
-                                else Icons.Rounded.KeyboardArrowRight,
-                                contentDescription = "icon",
-                                modifier = Modifier
-                                    .clickable {
-                                        isMapExpanded = !isMapExpanded
-                                    }
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(10.dp))
-                        if(isMapExpanded){
-                            Image(
-                                painter = painterResource(R.drawable.delpapa),
-                                contentDescription = "img",
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = 20.dp),
-                                contentScale = ContentScale.FillWidth
-                            )
-                            Spacer(modifier = Modifier.height(20.dp))
-                        }
-                    }
-                }
-                Spacer(modifier = Modifier.height(100.dp))
-
-            }
-        }
-
-    }
 }

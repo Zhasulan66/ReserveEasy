@@ -114,9 +114,20 @@ fun Navigation() {
         }
 
         //AddBookingScreen
-        composable(route = Screen.AddBookingScreen.route + "/{id}",
+        composable(route = Screen.AddBookingScreen.route
+                + "/{id}" + "/{restaurantName}" + "/{restaurantAddress}",
             arguments = listOf(
                 navArgument("id"){
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = false
+                },
+                navArgument("restaurantName"){
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = false
+                },
+                navArgument("restaurantAddress"){
                     type = NavType.StringType
                     defaultValue = ""
                     nullable = false
@@ -125,12 +136,15 @@ fun Navigation() {
         ) { entry ->
             AddBookingScreen(
                 navController = navController,
-                restaurantId = entry.arguments!!.getString("id").toString()
+                restaurantId = entry.arguments!!.getString("id").toString(),
+                restaurantName = entry.arguments!!.getString("restaurantName").toString(),
+                restaurantAddress = entry.arguments!!.getString("restaurantAddress").toString()
             )
         }
 
         //ChooseTableBookingScreen
-        composable(route = Screen.ChooseTableBookingScreen.route + "/{id}" + "/{reservedTime}",
+        composable(route = Screen.ChooseTableBookingScreen.route
+                + "/{id}" + "/{reservedTime}" + "/{restaurantName}" + "/{restaurantAddress}",
             arguments = listOf(
                 navArgument("id"){
                     type = NavType.StringType
@@ -141,6 +155,16 @@ fun Navigation() {
                     type = NavType.StringType
                     defaultValue = ""
                     nullable = false
+                },
+                navArgument("restaurantName"){
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = false
+                },
+                navArgument("restaurantAddress"){
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = false
                 }
             )
         ) { entry ->
@@ -148,12 +172,15 @@ fun Navigation() {
                 navController = navController,
                 restaurantId = entry.arguments!!.getString("id").toString(),
                 reservedTime = entry.arguments!!.getString("reservedTime").toString(),
+                restaurantName = entry.arguments!!.getString("restaurantName").toString(),
+                restaurantAddress = entry.arguments!!.getString("restaurantAddress").toString()
             )
         }
 
         //ConfirmBookingScreen
         composable(route = Screen.ConfirmBookingScreen.route
-                + "/{id}" + "/{tableId}" + "/{reservedTime}",
+                + "/{id}" + "/{tableId}" + "/{reservedTime}"
+                + "/{restaurantName}" + "/{restaurantAddress}",
             arguments = listOf(
                 navArgument("id"){
                     type = NavType.StringType
@@ -169,6 +196,16 @@ fun Navigation() {
                     type = NavType.StringType
                     defaultValue = ""
                     nullable = false
+                },
+                navArgument("restaurantName"){
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = false
+                },
+                navArgument("restaurantAddress"){
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = false
                 }
             )
         ) { entry ->
@@ -177,6 +214,8 @@ fun Navigation() {
                 restaurantId = entry.arguments!!.getString("id").toString(),
                 tableId = entry.arguments!!.getString("tableId").toString(),
                 reservedTime = entry.arguments!!.getString("reservedTime").toString(),
+                restaurantName = entry.arguments!!.getString("restaurantName").toString(),
+                restaurantAddress = entry.arguments!!.getString("restaurantAddress").toString()
             )
         }
 

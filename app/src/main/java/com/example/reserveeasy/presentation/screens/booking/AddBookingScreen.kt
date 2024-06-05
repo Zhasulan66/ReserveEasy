@@ -59,7 +59,9 @@ import java.util.Calendar
 @Composable
 fun AddBookingScreen(
     navController: NavController,
-    restaurantId: String
+    restaurantId: String,
+    restaurantName: String,
+    restaurantAddress: String
 ){
 
     Box(
@@ -378,9 +380,14 @@ fun AddBookingScreen(
                     color = GreenMain
                 )
                 .clickable {
-                    Log.d("MyTag", "current time : ${formatReservedTime(currentDate, currentTime)}")
                     if(currentDate.isNotEmpty() && currentTime.isNotEmpty()){
-                        navController.navigate(Screen.ChooseTableBookingScreen.route + "/${restaurantId}" + "/${formatReservedTime(currentDate, currentTime)}")
+                        Log.d("MyTag", "current time : ${formatReservedTime(currentDate, currentTime)}")
+                        navController.navigate(Screen.ChooseTableBookingScreen.route
+                                + "/${restaurantId}"
+                                + "/${formatReservedTime(currentDate, currentTime)}"
+                                + "/${restaurantName}"
+                                + "/${restaurantAddress}"
+                        )
                     }
                 },
             contentAlignment = Alignment.Center
